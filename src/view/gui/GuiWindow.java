@@ -32,6 +32,9 @@ public class GuiWindow extends JFrame implements IGuiWindow {
 		validate();
     }
 
+    public GuiWindow() {
+    }
+
     @Override
 	public JButton getButton(EventName eventName) {
 		if(!eventButtons.containsKey(eventName))

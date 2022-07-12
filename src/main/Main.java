@@ -2,9 +2,7 @@ package main;
 
 import controller.IJPaintController;
 import controller.JPaintController;
-import model.DrawRectangle;
-import model.ShapeColor;
-import model.ShapeType;
+import model.*;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -12,12 +10,14 @@ import view.gui.PaintCanvas;
 import view.interfaces.IGuiWindow;
 import view.interfaces.PaintCanvasBase;
 import view.interfaces.IUiModule;
-import model.DrawRectangle;
+import model.Rectangle;
 
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Collection;
 import java.util.EnumMap;
+import controller.MouseHandler;
 
 public class Main {
     public static void main(String[] args){
@@ -35,10 +35,15 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        // Print shape
+        // Use mouse controller implementation
         Graphics2D graphics2d = paintCanvas.getGraphics2D();
-        DrawRectangle rectangle = new DrawRectangle(graphics2d);
-        rectangle.drawShape();
+        MouseHandler mouseHandler = new MouseHandler(graphics2d);
+        paintCanvas.addMouseListener(mouseHandler);
+
+        // Print shape
+        //Graphics2D graphics2d = paintCanvas.getGraphics2D();
+        //Rectangle rectangle = new Rectangle(graphics2d);
+        //rectangle.drawShape();
     }
 }
 

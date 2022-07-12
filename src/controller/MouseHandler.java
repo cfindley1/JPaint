@@ -1,16 +1,41 @@
 package controller;
 
-import model.*;
+import model.Point;
+import model.Rectangle;
+import view.gui.PaintCanvas;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-abstract public class MouseHandler implements MouseListener {
-    public model.Point point;
-    blankArea.addMouseListener(this);
-    addMouseListener(this);
 
 
 
+public class MouseHandler extends MouseAdapter {
+    // FIELDS
+
+    // These points outline the coordinates of shape X
+    public Point firstPoint;
+    public Point lastPoint;
+    private Graphics2D graphics2D;
+
+    // Constructor
+    public MouseHandler(Graphics2D graphics2D) {
+        this.graphics2D = graphics2D;
+    }
+
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // Calculate point on mouse press for start point of shape
+        firstPoint = new Point(e.getX(), e.getY());
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // Calculate point on release for endpoint of shape after user drags mouse
+        lastPoint = new Point(e.getX(), e.getY());
+
+        // Draw the shape
+        Rectangle.drawShape(graphics2D, firstPoint, lastPoint);
+    }
 }
