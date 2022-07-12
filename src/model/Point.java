@@ -1,6 +1,7 @@
 package model;
 
 public class Point {
+
     // Fields
     int x;
     int y;
@@ -11,6 +12,7 @@ public class Point {
         this.y = y;
     }
 
+    // Getters
     public int getX() {
         return x;
     }

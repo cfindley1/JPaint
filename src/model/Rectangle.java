@@ -1,16 +1,15 @@
 package model;
 
 import java.awt.*;
-import java.sql.SQLOutput;
 
-import view.gui.PaintCanvas;
-
+// Fields
 public class Rectangle {
     public Point firstPoint;
     public Point lastPoint;
     public int width;
     public int height;
 
+    // Constructor
     public Rectangle (Point firstPoint, Point lastPoint) {
         this.firstPoint = firstPoint;
         this.lastPoint = lastPoint;

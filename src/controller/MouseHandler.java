@@ -2,8 +2,6 @@ package controller;
 
 import model.Point;
 import model.Rectangle;
-import view.gui.PaintCanvas;
-
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -13,7 +11,7 @@ import java.awt.event.MouseEvent;
 public class MouseHandler extends MouseAdapter {
     // FIELDS
 
-    // These points outline the coordinates of shape X
+    // These points outline the coordinates of selected shape
     public Point firstPoint;
     public Point lastPoint;
     private Graphics2D graphics2D;
@@ -23,7 +21,7 @@ public class MouseHandler extends MouseAdapter {
         this.graphics2D = graphics2D;
     }
 
-
+    // Method Extensions
     @Override
     public void mousePressed(MouseEvent e) {
         // Calculate point on mouse press for start point of shape
