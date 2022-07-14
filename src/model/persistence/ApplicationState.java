@@ -8,6 +8,8 @@ import model.dialogs.DialogProvider;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
 import view.interfaces.IUiModule;
+//import model.runRedo;
+//import model.runUndo;
 
 public class ApplicationState implements IApplicationState {
     private final IUiModule uiModule;
@@ -18,6 +20,9 @@ public class ApplicationState implements IApplicationState {
     private ShapeColor activeSecondaryColor;
     private ShapeShadingType activeShapeShadingType;
     private MouseMode activeMouseMode;
+    //private runUndo undo;
+    //private runRedo redo;
+
 
     public ApplicationState(IUiModule uiModule) {
         this.uiModule = uiModule;
@@ -25,6 +30,7 @@ public class ApplicationState implements IApplicationState {
         setDefaults();
     }
 
+    // Setters
     @Override
     public void setActiveShape() {
         activeShapeType = uiModule.getDialogResponse(dialogProvider.getChooseShapeDialog());
@@ -50,6 +56,16 @@ public class ApplicationState implements IApplicationState {
         activeMouseMode = uiModule.getDialogResponse(dialogProvider.getChooseStartAndEndPointModeDialog());
     }
 
+    /*
+    public void setUndo() {
+        Undo.undo();
+    }
+
+    public void setRedo() {
+        Undo.undo();
+    }
+    */
+    // Getters
     @Override
     public ShapeType getActiveShapeType() {
         return activeShapeType;
@@ -75,6 +91,13 @@ public class ApplicationState implements IApplicationState {
         return activeMouseMode;
     }
 
+    /*
+    @Override
+    public runUndo getUndo() { return undo; }
+
+    @Override
+    public runRedo getRedo() { return redo; }
+    */
     private void setDefaults() {
         activeShapeType = ShapeType.RECTANGLE;
         activePrimaryColor = ShapeColor.BLUE;

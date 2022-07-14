@@ -1,11 +1,12 @@
 package controller;
 
+import model.CreateShape;
 import model.Point;
-import model.Rectangle;
+import view.gui.PaintCanvas;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 
 
 public class MouseHandler extends MouseAdapter {
@@ -15,10 +16,13 @@ public class MouseHandler extends MouseAdapter {
     public Point firstPoint;
     public Point lastPoint;
     private Graphics2D graphics2D;
+    private PaintCanvas paintCanvas;
+
 
     // Constructor
-    public MouseHandler(Graphics2D graphics2D) {
+    public MouseHandler(Graphics2D graphics2D, PaintCanvas paintCanvas) {
         this.graphics2D = graphics2D;
+        this.paintCanvas = paintCanvas;
     }
 
     // Method Extensions
@@ -33,7 +37,8 @@ public class MouseHandler extends MouseAdapter {
         // Calculate point on release for endpoint of shape after user drags mouse
         lastPoint = new Point(e.getX(), e.getY());
 
-        // Draw the shape
-        Rectangle.drawShape(graphics2D, firstPoint, lastPoint);
+        // Create the Shape
+        CreateShape shape = new CreateShape(firstPoint, lastPoint, paintCanvas);
+        shape.execute();
     }
 }
