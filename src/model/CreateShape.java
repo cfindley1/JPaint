@@ -35,7 +35,6 @@ public class CreateShape implements IUndoable, ICommand {
     public void undo() {
         ShapeList.remove(this.shape, paintCanvas);
         paintCanvas.repaint();
-        System.out.println(ShapeList.shapeList);
     }
 
     @Override
