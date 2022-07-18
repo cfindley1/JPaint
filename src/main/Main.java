@@ -26,9 +26,7 @@ public class Main {
         controller.setup();
 
         // Add mouse handler to paint canvas GUI
-        Graphics2D graphics2d = paintCanvas.getGraphics2D();
-        ShapeList shapeList = new ShapeList((PaintCanvas) paintCanvas);
-        MouseHandler mouseHandler = new MouseHandler(graphics2d, (PaintCanvas) paintCanvas);
+        MouseHandler mouseHandler = new MouseHandler((PaintCanvas) paintCanvas, appState);
         paintCanvas.addMouseListener(mouseHandler);
     }
 }

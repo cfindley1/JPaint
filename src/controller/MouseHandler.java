@@ -1,7 +1,11 @@
 package controller;
 
-import model.CreateShape;
+import model.ShapeConfiguration;
+import model.ShapeDrawer;
 import model.Point;
+import model.ShapeFactory;
+import model.interfaces.IShape;
+import model.persistence.ApplicationState;
 import view.gui.PaintCanvas;
 
 import java.awt.*;
@@ -15,14 +19,14 @@ public class MouseHandler extends MouseAdapter {
     // These points outline the coordinates of selected shape
     public Point firstPoint;
     public Point lastPoint;
-    private Graphics2D graphics2D;
     private PaintCanvas paintCanvas;
+    private ApplicationState appState;
 
 
     // Constructor
-    public MouseHandler(Graphics2D graphics2D, PaintCanvas paintCanvas) {
-        this.graphics2D = graphics2D;
+    public MouseHandler(PaintCanvas paintCanvas, ApplicationState appState) {
         this.paintCanvas = paintCanvas;
+        this.appState = appState;
     }
 
     // Method Extensions
@@ -37,8 +41,12 @@ public class MouseHandler extends MouseAdapter {
         // Calculate point on release for endpoint of shape after user drags mouse
         lastPoint = new Point(e.getX(), e.getY());
 
-        // Create the Shape
-        CreateShape shape = new CreateShape(firstPoint, lastPoint, paintCanvas);
-        shape.execute();
+        // Create the Shape and draw it
+        ShapeConfiguration shapeConfiguration = new ShapeConfiguration(firstPoint, lastPoint, paintCanvas, appState);
+        ShapeFactory shapeFactory = new ShapeFactory();
+        IShape shape = shapeFactory.getShape(shapeConfiguration);
+        ShapeDrawer shapeDrawer = new ShapeDrawer(shape, paintCanvas);
+        shapeDrawer.execute();
+
     }
 }

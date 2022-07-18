@@ -3,11 +3,7 @@ package model;
 import java.awt.*;
 
 public enum ShapeColor {
-    BLACK {
-        public Color getColor() {
-            return Color.BLACK;
-        }
-    },
+    BLACK,
     BLUE,
     CYAN,
     DARK_GRAY,

@@ -1,14 +1,15 @@
 package model;
 
+import model.interfaces.IShape;
+
 import java.awt.*;
 
 public class DrawShape {
 
     // Iterate over shape list and draw everything
-    public static void draw(Graphics2D graphics2D) {
-        for (Shape shape : ShapeList.shapeList) {
-            graphics2D.setColor(Color.pink);
-            graphics2D.fillRect(shape.firstPoint.getX(), shape.firstPoint.getY(), shape.width, shape.height);
+    public static void draw(Graphics2D g) {
+        for (IShape shape : ShapeList.shapeList) {
+            shape.draw(g);
         }
     }
 }
