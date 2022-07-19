@@ -1,8 +1,6 @@
 package model;
 
 import model.interfaces.IShape;
-import view.gui.PaintCanvas;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +15,7 @@ public class ShapeList {
         shapeList.add(shape);
     }
 
-    public static void remove(IShape shape) {
+    public static void remove() {
         int index = shapeList.size() - 1;
         shapeList.remove(index);
     }

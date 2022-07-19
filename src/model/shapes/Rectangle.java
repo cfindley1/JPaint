@@ -7,26 +7,39 @@ import java.awt.*;
 
 public class Rectangle implements IShape {
     // Fields
-    public ShapeConfiguration shapeConfiguration;
+    public ShapeConfiguration shape;
 
     // Constructor
-    public Rectangle(ShapeConfiguration shapeConfiguration) {
-        this.shapeConfiguration = shapeConfiguration;
+    public Rectangle(ShapeConfiguration shape) {
+        this.shape = shape;
     }
 
     @Override
     public void draw(Graphics2D g) {
 
-        switch(shapeConfiguration.shapeShadingType) {
+        // Local Variables
+        int x = shape.x;
+        int y = shape.y;
+        int width = shape.width;
+        int height = shape.height;
+
+        // Determine Shading Mode and Draw
+        switch(shape.shapeShadingType) {
             case FILLED_IN:
-                g.setColor(shapeConfiguration.shapeColorPrimary);
-                g.fillRect(shapeConfiguration.firstPoint.getX(), shapeConfiguration.firstPoint.getY(), shapeConfiguration.width, shapeConfiguration.height);
+                g.setColor(shape.shapeColorPrimary);
+                g.fillRect(x, y, width, height);
                 break;
             case OUTLINE:
-                System.out.println("outline");
+                g.setStroke(new BasicStroke(5));
+                g.setColor(shape.shapeColorPrimary);
+                g.drawRect(x, y, width, height);
                 break;
             case OUTLINE_AND_FILLED_IN:
-                System.out.println("Outline and Filed in");
+                g.setColor(shape.shapeColorPrimary);
+                g.fillRect(x, y, width, height);
+                g.setStroke(new BasicStroke(5));
+                g.setColor(shape.shapeColorSecondary);
+                g.drawRect(x, y, width, height);
                 break;
         }
     }

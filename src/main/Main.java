@@ -3,7 +3,6 @@ package main;
 import controller.IJPaintController;
 import controller.JPaintController;
 import controller.MouseHandler;
-import model.ShapeList;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -11,8 +10,6 @@ import view.gui.PaintCanvas;
 import view.interfaces.IGuiWindow;
 import view.interfaces.IUiModule;
 import view.interfaces.PaintCanvasBase;
-
-import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {

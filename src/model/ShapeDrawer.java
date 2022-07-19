@@ -4,7 +4,6 @@ import model.interfaces.ICommand;
 import model.interfaces.IShape;
 import model.interfaces.IUndoable;
 import view.gui.PaintCanvas;
-import java.awt.*;
 
 public class ShapeDrawer implements IUndoable, ICommand {
 
@@ -21,6 +20,7 @@ public class ShapeDrawer implements IUndoable, ICommand {
     // Methods
     @Override
     public void execute() {
+        System.out.println("in shapedrawer.execute");
         ShapeList.add(shape);
         paintCanvas.repaint();
         CommandHistory.add(this);
@@ -28,7 +28,7 @@ public class ShapeDrawer implements IUndoable, ICommand {
 
     @Override
     public void undo() {
-        ShapeList.remove(this.shape);
+        ShapeList.remove();
         paintCanvas.repaint();
     }
 

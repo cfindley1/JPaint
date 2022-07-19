@@ -17,8 +17,8 @@ public class MouseHandler extends MouseAdapter {
     // FIELDS
 
     // These points outline the coordinates of selected shape
-    public Point firstPoint;
-    public Point lastPoint;
+    private Point firstPoint;
+    private Point lastPoint;
     private PaintCanvas paintCanvas;
     private ApplicationState appState;
 
@@ -42,11 +42,10 @@ public class MouseHandler extends MouseAdapter {
         lastPoint = new Point(e.getX(), e.getY());
 
         // Create the Shape and draw it
-        ShapeConfiguration shapeConfiguration = new ShapeConfiguration(firstPoint, lastPoint, paintCanvas, appState);
+        ShapeConfiguration shapeConfiguration = new ShapeConfiguration(firstPoint, lastPoint, appState);
         ShapeFactory shapeFactory = new ShapeFactory();
         IShape shape = shapeFactory.getShape(shapeConfiguration);
         ShapeDrawer shapeDrawer = new ShapeDrawer(shape, paintCanvas);
         shapeDrawer.execute();
-
     }
 }
