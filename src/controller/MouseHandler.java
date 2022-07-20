@@ -1,6 +1,8 @@
 package controller;
 
 import model.*;
+import model.commands.MoveCommand;
+import model.commands.SelectCommand;
 import model.interfaces.IShape;
 import model.persistence.ApplicationState;
 import view.gui.PaintCanvas;
@@ -52,7 +54,7 @@ public class MouseHandler extends MouseAdapter {
         if (mouseMode == MouseMode.SELECT) {
             SelectCommand selectCommand = new SelectCommand(firstPoint, lastPoint, paintCanvas);
             selectCommand.execute();
-            
+
             // For Debugging
             for (IShape shape : SelectedShapeList.selectedShapeList) {
                 System.out.println(shape);

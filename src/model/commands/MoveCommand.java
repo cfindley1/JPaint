@@ -1,5 +1,8 @@
-package model;
+package model.commands;
 
+import model.CommandHistory;
+import model.SelectedShapeList;
+import model.ShapeConfiguration;
 import model.interfaces.ICommand;
 import model.interfaces.IShape;
 import model.interfaces.IUndoable;

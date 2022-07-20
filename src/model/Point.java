@@ -3,8 +3,8 @@ package model;
 public class Point {
 
     // Fields
-    int x;
-    int y;
+    public int x;
+    public int y;
 
     // Constructor
     public Point(int x, int y) {
