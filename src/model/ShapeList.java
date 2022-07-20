@@ -1,6 +1,7 @@
 package model;
 
 import model.interfaces.IShape;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,5 +19,27 @@ public class ShapeList {
     public static void remove() {
         int index = shapeList.size() - 1;
         shapeList.remove(index);
+    }
+
+    public static boolean collides(Point from, Point to, Shape shapeConfig) {
+
+        ShapeConfiguration shape = shapeConfig.getShapeConfig();
+        int x1 = shape.firstPoint.getX();
+        int x2 = shape.lastPoint.getX();
+        int y1 = shape.firstPoint.getY();
+        int y2 = shape.lastPoint.getY();
+
+        int s_l_x = Math.min(x1, x2);
+        int s_t_y = Math.min(y1, y2);
+        int s_r_x = Math.max(x1, x2);
+        int s_b_y = Math.max(y1, y2);
+
+        int d_l_x = Math.min(from.x, to.x);
+        int d_t_y = Math.min(from.y, to.y);
+        int d_r_x = Math.max(from.x, to.x);
+        int d_b_y = Math.max(from.y, to.y);
+
+        return ((d_r_x > s_l_x) && (d_b_y > s_t_y)
+                && (s_r_x > d_l_x) && (s_b_y > d_t_y));
     }
 }

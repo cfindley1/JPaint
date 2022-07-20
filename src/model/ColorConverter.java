@@ -1,14 +1,14 @@
 package model;
 
 
-import java.awt.Color;
+import java.awt.*;
 
 // Class to Convert Enums into Color object
 public class ColorConverter {
     private static Color color;
 
     static Color getColor(ShapeColor col) {
-        
+
         switch (col) {
             case BLACK:
                 color = Color.BLACK;

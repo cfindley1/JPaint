@@ -1,12 +1,13 @@
 package model.shapes;
 
 import model.Point;
+import model.Shape;
 import model.ShapeConfiguration;
 import model.interfaces.IShape;
 
 import java.awt.*;
 
-public class Triangle implements IShape {
+public class Triangle extends Shape implements IShape {
     // Fields
     public ShapeConfiguration shape;
 
@@ -14,7 +15,7 @@ public class Triangle implements IShape {
     public Triangle(ShapeConfiguration shape) {
         this.shape = shape;
     }
-    
+
     @Override
     public void draw(Graphics2D g) {
 
@@ -25,11 +26,11 @@ public class Triangle implements IShape {
         int x2 = lastPoint.getX();
         int y1 = firstPoint.getY();
         int y2 = lastPoint.getY();
-        int[] xPoints = new int[] {x1, x2, x1};
-        int[] yPoints = new int[] {y1, y2, y2};
+        int[] xPoints = new int[]{x1, x2, x1};
+        int[] yPoints = new int[]{y1, y2, y2};
 
         // Determine Shading Mode and Draw
-        switch(shape.shapeShadingType) {
+        switch (shape.shapeShadingType) {
             case FILLED_IN:
                 g.setColor(shape.shapeColorPrimary);
                 g.fillPolygon(xPoints, yPoints, 3);
@@ -48,5 +49,9 @@ public class Triangle implements IShape {
                 break;
         }
 
+    }
+
+    public ShapeConfiguration getShapeConfig() {
+        return this.shape;
     }
 }

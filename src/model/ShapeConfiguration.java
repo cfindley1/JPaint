@@ -1,6 +1,7 @@
 package model;
 
 import model.persistence.ApplicationState;
+
 import java.awt.*;
 
 public class ShapeConfiguration {
@@ -24,7 +25,6 @@ public class ShapeConfiguration {
     public Color shapeColorPrimary;
     public Color shapeColorSecondary;
     public ShapeShadingType shapeShadingType;
-
 
 
     // CONSTRUCTOR //

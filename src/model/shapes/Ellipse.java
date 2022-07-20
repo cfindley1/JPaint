@@ -1,17 +1,19 @@
 package model.shapes;
 
+import model.Shape;
 import model.ShapeConfiguration;
 import model.interfaces.IShape;
 
 import java.awt.*;
 
-public class Ellipse implements IShape {
+public class Ellipse extends Shape implements IShape {
     public ShapeConfiguration shape;
 
     // Constructor
     public Ellipse(ShapeConfiguration shape) {
         this.shape = shape;
     }
+
     @Override
     public void draw(Graphics2D g) {
         // Local Variables
@@ -21,7 +23,7 @@ public class Ellipse implements IShape {
         int height = shape.height;
 
         // Determine Shading Mode and Draw
-        switch(shape.shapeShadingType) {
+        switch (shape.shapeShadingType) {
             case FILLED_IN:
                 g.setColor(shape.shapeColorPrimary);
                 g.fillOval(x, y, width, height);
@@ -39,6 +41,9 @@ public class Ellipse implements IShape {
                 g.drawOval(x, y, width, height);
                 break;
         }
+    }
 
+    public ShapeConfiguration getShapeConfig() {
+        return this.shape;
     }
 }

@@ -1,11 +1,12 @@
 package model.shapes;
 
+import model.Shape;
 import model.ShapeConfiguration;
 import model.interfaces.IShape;
 
 import java.awt.*;
 
-public class Rectangle implements IShape {
+public class Rectangle extends Shape implements IShape {
     // Fields
     public ShapeConfiguration shape;
 
@@ -24,7 +25,7 @@ public class Rectangle implements IShape {
         int height = shape.height;
 
         // Determine Shading Mode and Draw
-        switch(shape.shapeShadingType) {
+        switch (shape.shapeShadingType) {
             case FILLED_IN:
                 g.setColor(shape.shapeColorPrimary);
                 g.fillRect(x, y, width, height);
@@ -42,5 +43,9 @@ public class Rectangle implements IShape {
                 g.drawRect(x, y, width, height);
                 break;
         }
+    }
+
+    public ShapeConfiguration getShapeConfig() {
+        return this.shape;
     }
 }
