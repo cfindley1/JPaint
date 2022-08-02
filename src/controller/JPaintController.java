@@ -1,16 +1,20 @@
 package controller;
 
+import model.commands.CopyCommand;
+import model.commands.PasteCommand;
 import model.commands.RedoCommand;
 import model.commands.UndoCommand;
 import model.interfaces.IApplicationState;
 import view.EventName;
+import view.gui.PaintCanvas;
 import view.interfaces.IUiModule;
+import view.interfaces.PaintCanvasBase;
 
 public class JPaintController implements IJPaintController {
     private final IUiModule uiModule;
     private final IApplicationState applicationState;
 
-    public JPaintController(IUiModule uiModule, IApplicationState applicationState) {
+    public JPaintController(IUiModule uiModule, IApplicationState applicationState, PaintCanvas paintCanvas) {
         this.uiModule = uiModule;
         this.applicationState = applicationState;
     }
@@ -33,6 +37,20 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.REDO, () -> {
             RedoCommand command = new RedoCommand();
             command.execute();
+        });
+        uiModule.addEvent(EventName.COPY, () -> {
+            CopyCommand command = new CopyCommand();
+            command.execute();
+        });
+        uiModule.addEvent(EventName.PASTE, () -> {
+            PasteCommand command = new PasteCommand();
+            command.execute();
+        });
+        uiModule.addEvent(EventName.GROUP, () -> {
+
+        });
+        uiModule.addEvent(EventName.UNGROUP, () -> {
+
         });
     }
 }
