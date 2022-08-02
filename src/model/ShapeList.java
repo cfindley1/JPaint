@@ -24,10 +24,12 @@ public class ShapeList {
     public static boolean collides(Point from, Point to, Shape shapeConfig) {
 
         ShapeConfiguration shape = shapeConfig.getShapeConfig();
-        int x1 = shape.firstPoint.getX();
-        int x2 = shape.lastPoint.getX();
-        int y1 = shape.firstPoint.getY();
-        int y2 = shape.lastPoint.getY();
+        Point firstPoint = shape.getFirstPoint();
+        Point lastPoint = shape.getLastPoint();
+        int x1 = firstPoint.getX();
+        int x2 = lastPoint.getX();
+        int y1 = firstPoint.getY();
+        int y2 = lastPoint.getY();
 
         int s_l_x = Math.min(x1, x2);
         int s_t_y = Math.min(y1, y2);

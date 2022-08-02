@@ -1,6 +1,7 @@
 package model.commands;
 
 import model.CommandHistory;
+import model.Point;
 import model.SelectedShapeList;
 import model.ShapeConfiguration;
 import model.interfaces.ICommand;
@@ -29,10 +30,10 @@ public class MoveCommand implements IUndoable, ICommand {
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
             shapeConfig.x += deltaX;
             shapeConfig.y += deltaY;
-            shapeConfig.firstPoint.x += deltaX;
-            shapeConfig.firstPoint.y += deltaY;
-            shapeConfig.lastPoint.x += deltaX;
-            shapeConfig.lastPoint.y += deltaY;
+            Point firstPoint = shapeConfig.getFirstPoint();
+            Point lastPoint = shapeConfig.getLastPoint();
+            shapeConfig.setFirstPoint(new Point(firstPoint.x += deltaX, firstPoint.y += deltaY));
+            shapeConfig.setLastPoint(new Point(lastPoint.x += deltaX, lastPoint.y += deltaY));
 
         }
         paintCanvas.repaint();
@@ -45,10 +46,10 @@ public class MoveCommand implements IUndoable, ICommand {
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
             shapeConfig.x -= deltaX;
             shapeConfig.y -= deltaY;
-            shapeConfig.firstPoint.x -= deltaX;
-            shapeConfig.firstPoint.y -= deltaY;
-            shapeConfig.lastPoint.x -= deltaX;
-            shapeConfig.lastPoint.y -= deltaY;
+            Point firstPoint = shapeConfig.getFirstPoint();
+            Point lastPoint = shapeConfig.getLastPoint();
+            shapeConfig.setFirstPoint(new Point(firstPoint.x -= deltaX, firstPoint.y -= deltaY));
+            shapeConfig.setLastPoint(new Point(lastPoint.x -= deltaX, lastPoint.y -= deltaY));
         }
         paintCanvas.repaint();
     }
@@ -59,10 +60,10 @@ public class MoveCommand implements IUndoable, ICommand {
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
             shapeConfig.x += deltaX;
             shapeConfig.y += deltaY;
-            shapeConfig.firstPoint.x += deltaX;
-            shapeConfig.firstPoint.y += deltaY;
-            shapeConfig.lastPoint.x += deltaX;
-            shapeConfig.lastPoint.y += deltaY;
+            Point firstPoint = shapeConfig.getFirstPoint();
+            Point lastPoint = shapeConfig.getLastPoint();
+            shapeConfig.setFirstPoint(new Point(firstPoint.x += deltaX, firstPoint.y += deltaY));
+            shapeConfig.setLastPoint(new Point(lastPoint.x += deltaX, lastPoint.y += deltaY));
         }
         paintCanvas.repaint();
     }

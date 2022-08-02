@@ -6,15 +6,18 @@ import model.commands.RedoCommand;
 import model.commands.UndoCommand;
 import model.interfaces.IApplicationState;
 import view.EventName;
+import view.gui.PaintCanvas;
 import view.interfaces.IUiModule;
 
 public class JPaintController implements IJPaintController {
     private final IUiModule uiModule;
     private final IApplicationState applicationState;
+    private PaintCanvas paintCanvas;
 
-    public JPaintController(IUiModule uiModule, IApplicationState applicationState) {
+    public JPaintController(IUiModule uiModule, IApplicationState applicationState, PaintCanvas paintCanvas) {
         this.uiModule = uiModule;
         this.applicationState = applicationState;
+        this.paintCanvas = paintCanvas;
     }
 
     @Override
@@ -41,7 +44,7 @@ public class JPaintController implements IJPaintController {
             command.execute();
         });
         uiModule.addEvent(EventName.PASTE, () -> {
-            PasteCommand command = new PasteCommand();
+            PasteCommand command = new PasteCommand(paintCanvas);
             command.execute();
         });
         uiModule.addEvent(EventName.GROUP, () -> {

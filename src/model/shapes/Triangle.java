@@ -20,8 +20,8 @@ public class Triangle extends Shape implements IShape {
     public void draw(Graphics2D g) {
 
         // Local Variables
-        Point firstPoint = shape.firstPoint;
-        Point lastPoint = shape.lastPoint;
+        Point firstPoint = shape.getFirstPoint();
+        Point lastPoint = shape.getLastPoint();
         int x1 = firstPoint.getX();
         int x2 = lastPoint.getX();
         int y1 = firstPoint.getY();

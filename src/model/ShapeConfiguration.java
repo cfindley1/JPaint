@@ -12,8 +12,8 @@ public class ShapeConfiguration {
     public ApplicationState appState;
 
     // Shape Coordinates
-    public Point firstPoint;
-    public Point lastPoint;
+    private Point firstPoint;
+    private Point lastPoint;
     public int width;
     public int height;
     public int x;
@@ -40,5 +40,21 @@ public class ShapeConfiguration {
         this.shapeColorPrimary = ColorConverter.getColor(appState.getActivePrimaryColor());
         this.shapeColorSecondary = ColorConverter.getColor(appState.getActiveSecondaryColor());
         this.shapeShadingType = appState.getActiveShapeShadingType();
+    }
+
+    public Point getFirstPoint() {
+        return firstPoint;
+    }
+
+    public Point getLastPoint() {
+        return lastPoint;
+    }
+
+    public void setFirstPoint(Point firstPoint) {
+        this.firstPoint = firstPoint;
+    }
+
+    public void setLastPoint(Point lastPoint) {
+        this.lastPoint = lastPoint;
     }
 }

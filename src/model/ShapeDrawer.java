@@ -20,7 +20,6 @@ public class ShapeDrawer implements IUndoable, ICommand {
     // Methods
     @Override
     public void execute() {
-        System.out.println("in shapedrawer.execute");
         ShapeList.add(shape);
         paintCanvas.repaint();
         CommandHistory.add(this);
