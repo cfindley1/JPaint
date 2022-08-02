@@ -27,9 +27,6 @@ public class MoveCommand implements IUndoable, ICommand {
         for (IShape shape : SelectedShapeList.selectedShapeList) {
             this.movedShapes.add(shape);
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
-            //System.out.println("deltaX: " + deltaX + " deltaY: " + deltaY);
-            //System.out.println("firstPoint.y: " + shapeConfig.firstPoint.y +
-            //        " lastPoint.y: " + shapeConfig.lastPoint.y);
             shapeConfig.x += deltaX;
             shapeConfig.y += deltaY;
             shapeConfig.firstPoint.x += deltaX;

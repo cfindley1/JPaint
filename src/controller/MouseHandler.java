@@ -54,12 +54,6 @@ public class MouseHandler extends MouseAdapter {
         if (mouseMode == MouseMode.SELECT) {
             SelectCommand selectCommand = new SelectCommand(firstPoint, lastPoint, paintCanvas);
             selectCommand.execute();
-
-            // For Debugging
-            for (IShape shape : SelectedShapeList.selectedShapeList) {
-                System.out.println(shape);
-            }
-            System.out.println("Done");
         }
 
         if (mouseMode == MouseMode.MOVE) {

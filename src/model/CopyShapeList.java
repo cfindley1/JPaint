@@ -2,6 +2,7 @@ package model;
 
 import model.interfaces.IShape;
 import view.gui.PaintCanvas;
+
 import java.util.ArrayList;
 import java.util.List;
 
