@@ -18,4 +18,10 @@ public class CopyShapeList {
     public static void remove(Object shape, PaintCanvas paintCanvas) {
         copyShapeList.remove(shape);
     }
+
+    public static void print() {
+        System.out.println(copyShapeList.size());
+        for (IShape shape : copyShapeList)
+            System.out.println(shape);
+    }
 }

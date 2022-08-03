@@ -27,9 +27,5 @@ public class SelectCommand implements ICommand {
                 SelectedShapeList.add(shape, paintCanvas);
             else SelectedShapeList.remove(shape, paintCanvas);
         }
-        /*for (IShape shape : SelectedShapeList.selectedShapeList) {
-            System.out.println(shape);
-            System.out.println(SelectedShapeList.selectedShapeList.size());
-        }*/
     }
 }

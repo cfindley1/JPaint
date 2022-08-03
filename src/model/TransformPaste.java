@@ -13,9 +13,7 @@ public class TransformPaste implements ITransformStrategy {
         Point lastPoint = new Point (p2.getX() + deltaX, p2.getY() + deltaY);
 
         // Create copied Shape
-        ShapeConfiguration s = new ShapeConfiguration(firstPoint, lastPoint, shape.appState);
-        ShapeFactory shapeFactory = new ShapeFactory();
-        IShape newShape = shapeFactory.getShape(s);
+        IShape newShape = shape.shapeCopy(firstPoint, lastPoint);
         ShapeList.add(newShape);
         return newShape;
     }

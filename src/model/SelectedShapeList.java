@@ -21,4 +21,10 @@ public class SelectedShapeList {
         selectedShapeList.remove(shape);
         paintCanvas.repaint();
     }
+
+    public static void print() {
+        System.out.println(selectedShapeList.size());
+        for (IShape shape : selectedShapeList)
+            System.out.println(shape);
+    }
 }
