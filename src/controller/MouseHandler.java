@@ -35,6 +35,7 @@ public class MouseHandler extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         // Calculate point on mouse press for start point of shape
         firstPoint = new Point(e.getX(), e.getY());
+        System.out.println(e.getX() + ", " + e.getY());
     }
 
     @Override
