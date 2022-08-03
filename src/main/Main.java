@@ -15,15 +15,15 @@ public class Main {
     public static void main(String[] args) {
 
         //Instantiate GUI
-        PaintCanvasBase paintCanvas = new PaintCanvas();
+        PaintCanvas paintCanvas = PaintCanvas.getInstance();
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);
-        IJPaintController controller = new JPaintController(uiModule, appState, (PaintCanvas) paintCanvas);
+        IJPaintController controller = new JPaintController(uiModule, appState);
         controller.setup();
 
         // Add mouse handler to paint canvas GUI
-        MouseHandler mouseHandler = new MouseHandler((PaintCanvas) paintCanvas, appState);
+        MouseHandler mouseHandler = new MouseHandler(appState);
         paintCanvas.addMouseListener(mouseHandler);
     }
 }

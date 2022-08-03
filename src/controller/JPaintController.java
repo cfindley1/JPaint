@@ -9,12 +9,10 @@ import view.interfaces.IUiModule;
 public class JPaintController implements IJPaintController {
     private final IUiModule uiModule;
     private final IApplicationState applicationState;
-    private PaintCanvas paintCanvas;
 
-    public JPaintController(IUiModule uiModule, IApplicationState applicationState, PaintCanvas paintCanvas) {
+    public JPaintController(IUiModule uiModule, IApplicationState applicationState) {
         this.uiModule = uiModule;
         this.applicationState = applicationState;
-        this.paintCanvas = paintCanvas;
     }
 
     @Override
@@ -41,11 +39,11 @@ public class JPaintController implements IJPaintController {
             command.execute();
         });
         uiModule.addEvent(EventName.PASTE, () -> {
-            PasteCommand command = new PasteCommand(paintCanvas);
+            PasteCommand command = new PasteCommand();
             command.execute();
         });
         uiModule.addEvent(EventName.DELETE, () -> {
-            DeleteCommand command = new DeleteCommand(paintCanvas);
+            DeleteCommand command = new DeleteCommand();
             command.execute();
         });
         uiModule.addEvent(EventName.GROUP, () -> {

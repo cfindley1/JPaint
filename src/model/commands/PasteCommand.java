@@ -13,8 +13,8 @@ public class PasteCommand implements ICommand, IUndoable {
     PaintCanvas paintCanvas;
     List<IShape> copiedShapes = new ArrayList<>();
     TransformContext paste = new TransformContext(new TransformPaste());
-    public PasteCommand(PaintCanvas paintCanvas) {
-        this.paintCanvas = paintCanvas;
+    public PasteCommand() {
+        this.paintCanvas = PaintCanvas.getInstance();
     }
 
     public void execute() {

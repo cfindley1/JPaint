@@ -15,9 +15,9 @@ public class DrawShapeCommand implements IUndoable, ICommand {
     public IShape shape; // Reference to created shape
 
     // Constructor
-    public DrawShapeCommand(IShape shape, PaintCanvas paintCanvas) {
+    public DrawShapeCommand(IShape shape) {
         this.shape = shape;
-        this.paintCanvas = paintCanvas;
+        this.paintCanvas = PaintCanvas.getInstance();
     }
 
     // Methods

@@ -3,7 +3,6 @@ package model.shapes;
 import model.Shape;
 import model.ShapeConfiguration;
 import model.interfaces.IShape;
-import view.gui.PaintCanvas;
 
 import java.awt.*;
 

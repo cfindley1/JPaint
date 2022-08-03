@@ -17,10 +17,10 @@ public class MoveCommand implements IUndoable, ICommand {
     PaintCanvas paintCanvas;
     TransformContext move = new TransformContext(new TransformMove());
 
-    public MoveCommand(int deltaX, int deltaY, PaintCanvas paintCanvas) {
+    public MoveCommand(int deltaX, int deltaY) {
         this.deltaX = deltaX;
         this.deltaY = deltaY;
-        this.paintCanvas = paintCanvas;
+        this.paintCanvas = PaintCanvas.getInstance();
     }
 
     @Override

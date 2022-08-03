@@ -13,10 +13,10 @@ public class SelectCommand implements ICommand {
     private Point lastPoint;
     private PaintCanvas paintCanvas;
 
-    public SelectCommand(Point firstPoint, Point lastPoint, PaintCanvas paintCanvas) {
+    public SelectCommand(Point firstPoint, Point lastPoint) {
         this.firstPoint = firstPoint;
         this.lastPoint = lastPoint;
-        this.paintCanvas = paintCanvas;
+        this.paintCanvas = PaintCanvas.getInstance();
     }
 
     @Override

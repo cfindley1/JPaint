@@ -16,8 +16,8 @@ public class DeleteCommand implements ICommand, IUndoable {
     List<IShape> deletedShapes = new ArrayList<>();
     PaintCanvas paintCanvas;
 
-    public DeleteCommand(PaintCanvas paintCanvas) {
-        this.paintCanvas = paintCanvas;
+    public DeleteCommand() {
+        this.paintCanvas = PaintCanvas.getInstance();
     }
 
     @Override

@@ -19,14 +19,12 @@ public class MouseHandler extends MouseAdapter {
     // These points outline the coordinates of selected shape
     private Point firstPoint;
     private Point lastPoint;
-    private PaintCanvas paintCanvas;
     private ApplicationState appState;
     private MouseMode mouseMode;
 
 
     // Constructor
-    public MouseHandler(PaintCanvas paintCanvas, ApplicationState appState) {
-        this.paintCanvas = paintCanvas;
+    public MouseHandler(ApplicationState appState) {
         this.appState = appState;
         this.mouseMode = appState.getActiveMouseMode();
     }
@@ -49,20 +47,20 @@ public class MouseHandler extends MouseAdapter {
             ShapeConfiguration shapeConfiguration = new ShapeConfiguration(firstPoint, lastPoint, appState);
             ShapeFactory shapeFactory = new ShapeFactory();
             IShape shape = shapeFactory.getShape(shapeConfiguration);
-            DrawShapeCommand drawShapeCommand = new DrawShapeCommand(shape, paintCanvas);
+            DrawShapeCommand drawShapeCommand = new DrawShapeCommand(shape);
             drawShapeCommand.execute();
         }
 
         if (mouseMode == MouseMode.SELECT) {
             SelectedShapeList.selectedShapeList = new ArrayList<>();
-            SelectCommand selectCommand = new SelectCommand(firstPoint, lastPoint, paintCanvas);
+            SelectCommand selectCommand = new SelectCommand(firstPoint, lastPoint);
             selectCommand.execute();
         }
 
         if (mouseMode == MouseMode.MOVE) {
             int deltaX = lastPoint.getX() - firstPoint.getX();
             int deltaY = lastPoint.getY() - firstPoint.getY();
-            MoveCommand moveCommand = new MoveCommand(deltaX, deltaY, paintCanvas);
+            MoveCommand moveCommand = new MoveCommand(deltaX, deltaY);
             moveCommand.execute();
         }
     }
