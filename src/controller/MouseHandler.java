@@ -10,6 +10,7 @@ import view.gui.PaintCanvas;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 
 public class MouseHandler extends MouseAdapter {
@@ -53,6 +54,7 @@ public class MouseHandler extends MouseAdapter {
         }
 
         if (mouseMode == MouseMode.SELECT) {
+            SelectedShapeList.selectedShapeList = new ArrayList<>();
             SelectCommand selectCommand = new SelectCommand(firstPoint, lastPoint, paintCanvas);
             selectCommand.execute();
         }

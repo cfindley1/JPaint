@@ -23,45 +23,28 @@ public class MoveCommand implements IUndoable, ICommand {
         this.paintCanvas = paintCanvas;
     }
 
+    @Override
     public void execute() {
         for (IShape shape : SelectedShapeList.selectedShapeList) {
-            this.movedShapes.add(shape);
-            ShapeConfiguration shapeConfig = shape.getShapeConfig();
-            System.out.println(shapeConfig.shapeType); //Debug
-            System.out.println("deltaX: " + deltaX + " deltaY: " + deltaY);
-            Point firstPoint = shapeConfig.getFirstPoint();
-            Point lastPoint = shapeConfig.getLastPoint();
-            System.out.println("Before move: (" + firstPoint.getX() + ", " + firstPoint.getY() + ")" + "  ("
-                    + lastPoint.getX() + ", " + lastPoint.getY() + ")"
-            );
-            move.execute(firstPoint, lastPoint, deltaX, deltaY);
-            System.out.println("After move: (" + firstPoint.getX() + ", " + firstPoint.getY() + ")" + "  ("
-                    + lastPoint.getX() + ", " + lastPoint.getY() + ")"
-            );
+            movedShapes.add(shape);
+            move.execute(shape, deltaX, deltaY);
         }
         paintCanvas.repaint();
         CommandHistory.add(this);
+        System.out.println("done");
     }
 
     @Override
     public void undo() {
-        for (IShape shape : movedShapes) {
-            ShapeConfiguration shapeConfig = shape.getShapeConfig();
-            Point firstPoint = shapeConfig.getFirstPoint();
-            Point lastPoint = shapeConfig.getLastPoint();
-            move.execute(firstPoint, lastPoint, -deltaX, -deltaY);
-        }
+        for (IShape shape : movedShapes)
+            move.execute(shape, -deltaX, -deltaY);
         paintCanvas.repaint();
     }
 
     @Override
     public void redo() {
-        for (IShape shape : movedShapes) {
-            ShapeConfiguration shapeConfig = shape.getShapeConfig();
-            Point firstPoint = shapeConfig.getFirstPoint();
-            Point lastPoint = shapeConfig.getLastPoint();
-            move.execute(firstPoint, lastPoint, deltaX, deltaY);
-        }
+        for (IShape shape : movedShapes)
+            move.execute(shape, deltaX, deltaY);
         paintCanvas.repaint();
     }
 }

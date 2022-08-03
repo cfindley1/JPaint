@@ -6,34 +6,35 @@ import model.interfaces.IShape;
 import model.interfaces.IUndoable;
 import view.gui.PaintCanvas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PasteCommand implements ICommand, IUndoable {
     PaintCanvas paintCanvas;
+    List<IShape> copiedShapes = new ArrayList<>();
+    TransformContext paste = new TransformContext(new TransformPaste());
     public PasteCommand(PaintCanvas paintCanvas) {
         this.paintCanvas = paintCanvas;
     }
 
     public void execute() {
-        // Strategy pattern for this and move?
         for (IShape shape : CopyShapeList.copyShapeList) {
-            // Retrieve coordinates from shape to create deep copy
-            ShapeConfiguration shapeConfig = shape.getShapeConfig();
-            Point firstPointOld = shapeConfig.getFirstPoint();
-            Point lastPointOld = shapeConfig.getLastPoint();
-
-            // Offset -- Need to optimize / edit down verbosity
-            Point firstPointNew = new Point(firstPointOld.getX() - 30, firstPointOld.getY() - 30);
-            Point lastPointNew = new Point(lastPointOld.getX() - 30, lastPointOld.getY() - 30);
-            ShapeConfiguration s = new ShapeConfiguration(firstPointNew, lastPointNew, shapeConfig.appState);
-            // Duplicate Shape
-            ShapeFactory shapeFactory = new ShapeFactory();
-            IShape newShape = shapeFactory.getShape(s);
-            ShapeList.add(newShape);
+            IShape newShape = paste.execute(shape,-30, -30);
+            copiedShapes.add(newShape);
         }
         paintCanvas.repaint();
         CommandHistory.add(this);
     }
     public void undo() {
-
+        for (IShape shape : copiedShapes) {
+            ShapeList.shapeList.remove(shape);
+        }
+        paintCanvas.repaint();
     }
-    public void redo() {}
+    public void redo() {
+        for (IShape shape : copiedShapes) {
+            ShapeList.shapeList.add(shape);
+        }
+        paintCanvas.repaint();
+    }
 }
