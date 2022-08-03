@@ -44,6 +44,18 @@ public class Ellipse extends Shape implements IShape {
         }
     }
 
+    public void selectDraw(Graphics2D g) {
+        int x = shape.getX();
+        int y = shape.getY();
+        int width = shape.width;
+        int height = shape.height;
+
+        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+        g.setStroke(stroke);
+        g.setColor(Color.BLACK);
+        g.drawOval(x, y, width, height);
+    }
+
     public ShapeConfiguration getShapeConfig() {
         return this.shape;
     }
