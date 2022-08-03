@@ -1,11 +1,9 @@
 package model.commands;
 
-import model.CommandHistory;
-import model.Point;
-import model.SelectedShapeList;
-import model.ShapeConfiguration;
+import model.*;
 import model.interfaces.ICommand;
 import model.interfaces.IShape;
+import model.interfaces.ITransformStrategy;
 import model.interfaces.IUndoable;
 import view.gui.PaintCanvas;
 
@@ -17,6 +15,7 @@ public class MoveCommand implements IUndoable, ICommand {
     int deltaY;
     List<IShape> movedShapes = new ArrayList<>();
     PaintCanvas paintCanvas;
+    TransformContext move = new TransformContext(new TransformMove());
 
     public MoveCommand(int deltaX, int deltaY, PaintCanvas paintCanvas) {
         this.deltaX = deltaX;
@@ -30,9 +29,7 @@ public class MoveCommand implements IUndoable, ICommand {
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
             Point firstPoint = shapeConfig.getFirstPoint();
             Point lastPoint = shapeConfig.getLastPoint();
-            shapeConfig.setFirstPoint(new Point(firstPoint.x += deltaX, firstPoint.y += deltaY));
-            shapeConfig.setLastPoint(new Point(lastPoint.x += deltaX, lastPoint.y += deltaY));
-
+            move.execute(firstPoint, lastPoint, deltaX, deltaY);
         }
         paintCanvas.repaint();
         CommandHistory.add(this);
@@ -44,8 +41,7 @@ public class MoveCommand implements IUndoable, ICommand {
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
             Point firstPoint = shapeConfig.getFirstPoint();
             Point lastPoint = shapeConfig.getLastPoint();
-            shapeConfig.setFirstPoint(new Point(firstPoint.x -= deltaX, firstPoint.y -= deltaY));
-            shapeConfig.setLastPoint(new Point(lastPoint.x -= deltaX, lastPoint.y -= deltaY));
+            move.execute(firstPoint, lastPoint, -deltaX, -deltaY);
         }
         paintCanvas.repaint();
     }
@@ -56,8 +52,7 @@ public class MoveCommand implements IUndoable, ICommand {
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
             Point firstPoint = shapeConfig.getFirstPoint();
             Point lastPoint = shapeConfig.getLastPoint();
-            shapeConfig.setFirstPoint(new Point(firstPoint.x += deltaX, firstPoint.y += deltaY));
-            shapeConfig.setLastPoint(new Point(lastPoint.x += deltaX, lastPoint.y += deltaY));
+            move.execute(firstPoint, lastPoint, deltaX, deltaY);
         }
         paintCanvas.repaint();
     }

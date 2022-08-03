@@ -10,8 +10,9 @@ public class PaintCanvas extends PaintCanvasBase {
 
     @Override
     public void paint(Graphics g) {
+        Graphics2D graphics2d = (Graphics2D) g;
         for (IShape shape : ShapeList.shapeList) {
-            shape.draw(this);
+            shape.draw(graphics2d);
         }
     }
 

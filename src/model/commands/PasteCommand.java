@@ -21,8 +21,8 @@ public class PasteCommand implements ICommand, IUndoable {
             Point lastPointOld = shapeConfig.getLastPoint();
 
             // Offset -- Need to optimize / edit down verbosity
-            Point firstPointNew = new Point(firstPointOld.x -= 30, firstPointOld.y -= 30);
-            Point lastPointNew = new Point(lastPointOld.x -= 30, lastPointOld.y -= 30);
+            Point firstPointNew = new Point(firstPointOld.getX() - 30, firstPointOld.getY() - 30);
+            Point lastPointNew = new Point(lastPointOld.getX() - 30, lastPointOld.getY() - 30);
             ShapeConfiguration s = new ShapeConfiguration(firstPointNew, lastPointNew, shapeConfig.appState);
             // Duplicate Shape
             ShapeFactory shapeFactory = new ShapeFactory();

@@ -17,10 +17,9 @@ public class Rectangle extends Shape implements IShape {
     }
 
     @Override
-    public void draw(PaintCanvas paintCanvas) {
+    public void draw(Graphics2D g) {
 
         // Local Variables
-        Graphics2D g = paintCanvas.getGraphics2D();
         int x = shape.getX();
         int y = shape.getY();
         int width = shape.width;

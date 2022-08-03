@@ -3,8 +3,8 @@ package model;
 public class Point {
 
     // Fields
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
     // Constructor
     public Point(int x, int y) {
@@ -20,4 +20,26 @@ public class Point {
     public int getY() {
         return y;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void transformX(int deltaX) {
+        this.x += deltaX;
+    }
+
+    public void transformY(int deltaY) {
+        this.y += deltaY;
+    }
+
+    public void transformXAndY(int deltaX, int deltaY) {
+        this.x += deltaX;
+        this.y += deltaY;
+    }
+
 }

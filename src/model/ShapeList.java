@@ -36,10 +36,10 @@ public class ShapeList {
         int s_r_x = Math.max(x1, x2);
         int s_b_y = Math.max(y1, y2);
 
-        int d_l_x = Math.min(from.x, to.x);
-        int d_t_y = Math.min(from.y, to.y);
-        int d_r_x = Math.max(from.x, to.x);
-        int d_b_y = Math.max(from.y, to.y);
+        int d_l_x = Math.min(from.getX(), to.getX());
+        int d_t_y = Math.min(from.getY(), to.getY());
+        int d_r_x = Math.max(from.getX(), to.getX());
+        int d_b_y = Math.max(from.getY(), to.getY());
 
         return ((d_r_x > s_l_x) && (d_b_y > s_t_y)
                 && (s_r_x > d_l_x) && (s_b_y > d_t_y));
