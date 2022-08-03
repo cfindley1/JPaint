@@ -28,8 +28,6 @@ public class MoveCommand implements IUndoable, ICommand {
         for (IShape shape : SelectedShapeList.selectedShapeList) {
             this.movedShapes.add(shape);
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
-            shapeConfig.x += deltaX;
-            shapeConfig.y += deltaY;
             Point firstPoint = shapeConfig.getFirstPoint();
             Point lastPoint = shapeConfig.getLastPoint();
             shapeConfig.setFirstPoint(new Point(firstPoint.x += deltaX, firstPoint.y += deltaY));
@@ -44,8 +42,6 @@ public class MoveCommand implements IUndoable, ICommand {
     public void undo() {
         for (IShape shape : movedShapes) {
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
-            shapeConfig.x -= deltaX;
-            shapeConfig.y -= deltaY;
             Point firstPoint = shapeConfig.getFirstPoint();
             Point lastPoint = shapeConfig.getLastPoint();
             shapeConfig.setFirstPoint(new Point(firstPoint.x -= deltaX, firstPoint.y -= deltaY));
@@ -58,8 +54,6 @@ public class MoveCommand implements IUndoable, ICommand {
     public void redo() {
         for (IShape shape : movedShapes) {
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
-            shapeConfig.x += deltaX;
-            shapeConfig.y += deltaY;
             Point firstPoint = shapeConfig.getFirstPoint();
             Point lastPoint = shapeConfig.getLastPoint();
             shapeConfig.setFirstPoint(new Point(firstPoint.x += deltaX, firstPoint.y += deltaY));

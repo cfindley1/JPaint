@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import model.commands.DrawShapeCommand;
 import model.commands.MoveCommand;
 import model.commands.SelectCommand;
 import model.interfaces.IShape;
@@ -29,7 +30,7 @@ public class MouseHandler extends MouseAdapter {
         this.mouseMode = appState.getActiveMouseMode();
     }
 
-    // Method Extensions
+    // Methods
     @Override
     public void mousePressed(MouseEvent e) {
         // Calculate point on mouse press for start point of shape
@@ -41,14 +42,13 @@ public class MouseHandler extends MouseAdapter {
         mouseMode = appState.getActiveMouseMode();
         // Calculate point on release for endpoint of shape after user drags mouse
         lastPoint = new Point(e.getX(), e.getY());
-
-        // Create the Shape and draw it
+        
         if (mouseMode == MouseMode.DRAW) {
             ShapeConfiguration shapeConfiguration = new ShapeConfiguration(firstPoint, lastPoint, appState);
             ShapeFactory shapeFactory = new ShapeFactory();
             IShape shape = shapeFactory.getShape(shapeConfiguration);
-            ShapeDrawer shapeDrawer = new ShapeDrawer(shape, paintCanvas);
-            shapeDrawer.execute();
+            DrawShapeCommand drawShapeCommand = new DrawShapeCommand(shape, paintCanvas);
+            drawShapeCommand.execute();
         }
 
         if (mouseMode == MouseMode.SELECT) {

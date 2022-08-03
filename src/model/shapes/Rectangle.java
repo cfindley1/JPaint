@@ -3,6 +3,7 @@ package model.shapes;
 import model.Shape;
 import model.ShapeConfiguration;
 import model.interfaces.IShape;
+import view.gui.PaintCanvas;
 
 import java.awt.*;
 
@@ -16,11 +17,12 @@ public class Rectangle extends Shape implements IShape {
     }
 
     @Override
-    public void draw(Graphics2D g) {
+    public void draw(PaintCanvas paintCanvas) {
 
         // Local Variables
-        int x = shape.x;
-        int y = shape.y;
+        Graphics2D g = paintCanvas.getGraphics2D();
+        int x = shape.getX();
+        int y = shape.getY();
         int width = shape.width;
         int height = shape.height;
 

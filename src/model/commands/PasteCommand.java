@@ -15,6 +15,7 @@ public class PasteCommand implements ICommand, IUndoable {
     public void execute() {
         // Strategy pattern for this and move?
         for (IShape shape : CopyShapeList.copyShapeList) {
+            // Retrieve coordinates from shape to create deep copy
             ShapeConfiguration shapeConfig = shape.getShapeConfig();
             Point firstPointOld = shapeConfig.getFirstPoint();
             Point lastPointOld = shapeConfig.getLastPoint();
@@ -27,9 +28,6 @@ public class PasteCommand implements ICommand, IUndoable {
             ShapeFactory shapeFactory = new ShapeFactory();
             IShape newShape = shapeFactory.getShape(s);
             ShapeList.add(newShape);
-        }
-        for (IShape ishape : ShapeList.shapeList) {
-            System.out.println("shape list shape " + ishape.getShapeConfig().x);
         }
         paintCanvas.repaint();
         CommandHistory.add(this);

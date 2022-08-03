@@ -16,9 +16,6 @@ public class ShapeConfiguration {
     private Point lastPoint;
     public int width;
     public int height;
-    public int x;
-    public int y;
-
 
     // Shape Aesthetics
     public ShapeType shapeType;
@@ -33,8 +30,6 @@ public class ShapeConfiguration {
         this.lastPoint = lastPoint;
         this.width = Math.abs(lastPoint.getX() - firstPoint.getX());
         this.height = Math.abs(lastPoint.getY() - firstPoint.getY());
-        this.x = Math.min(lastPoint.getX(), firstPoint.getX());
-        this.y = Math.min(lastPoint.getY(), firstPoint.getY());
         this.appState = appState;
         this.shapeType = appState.getActiveShapeType();
         this.shapeColorPrimary = ColorConverter.getColor(appState.getActivePrimaryColor());
@@ -56,5 +51,13 @@ public class ShapeConfiguration {
 
     public void setLastPoint(Point lastPoint) {
         this.lastPoint = lastPoint;
+    }
+
+    public int getX() {
+        return Math.min(lastPoint.getX(), firstPoint.getX());
+    }
+
+    public int getY() {
+        return Math.min(lastPoint.getY(), firstPoint.getY());
     }
 }

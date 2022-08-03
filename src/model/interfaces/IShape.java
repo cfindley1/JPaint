@@ -1,11 +1,10 @@
 package model.interfaces;
 
 import model.ShapeConfiguration;
-
-import java.awt.*;
+import view.gui.PaintCanvas;
 
 public interface IShape {
-    void draw(Graphics2D graphics2D);
+    void draw(PaintCanvas paintCanvas);
 
     ShapeConfiguration getShapeConfig();
 }

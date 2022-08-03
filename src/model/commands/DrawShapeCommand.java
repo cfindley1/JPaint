@@ -1,18 +1,20 @@
-package model;
+package model.commands;
 
+import model.CommandHistory;
+import model.ShapeList;
 import model.interfaces.ICommand;
 import model.interfaces.IShape;
 import model.interfaces.IUndoable;
 import view.gui.PaintCanvas;
 
-public class ShapeDrawer implements IUndoable, ICommand {
+public class DrawShapeCommand implements IUndoable, ICommand {
 
     private PaintCanvas paintCanvas;
     // Fields
     public IShape shape; // Reference to created shape
 
     // Constructor
-    public ShapeDrawer(IShape shape, PaintCanvas paintCanvas) {
+    public DrawShapeCommand(IShape shape, PaintCanvas paintCanvas) {
         this.shape = shape;
         this.paintCanvas = paintCanvas;
     }

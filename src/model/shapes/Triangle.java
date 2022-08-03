@@ -4,6 +4,7 @@ import model.Point;
 import model.Shape;
 import model.ShapeConfiguration;
 import model.interfaces.IShape;
+import view.gui.PaintCanvas;
 
 import java.awt.*;
 
@@ -17,9 +18,10 @@ public class Triangle extends Shape implements IShape {
     }
 
     @Override
-    public void draw(Graphics2D g) {
+    public void draw(PaintCanvas paintCanvas) {
 
         // Local Variables
+        Graphics2D g = paintCanvas.getGraphics2D();
         Point firstPoint = shape.getFirstPoint();
         Point lastPoint = shape.getLastPoint();
         int x1 = firstPoint.getX();
