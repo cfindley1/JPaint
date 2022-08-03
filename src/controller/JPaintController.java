@@ -1,9 +1,6 @@
 package controller;
 
-import model.commands.CopyCommand;
-import model.commands.PasteCommand;
-import model.commands.RedoCommand;
-import model.commands.UndoCommand;
+import model.commands.*;
 import model.interfaces.IApplicationState;
 import view.EventName;
 import view.gui.PaintCanvas;
@@ -45,6 +42,10 @@ public class JPaintController implements IJPaintController {
         });
         uiModule.addEvent(EventName.PASTE, () -> {
             PasteCommand command = new PasteCommand(paintCanvas);
+            command.execute();
+        });
+        uiModule.addEvent(EventName.DELETE, () -> {
+            DeleteCommand command = new DeleteCommand(paintCanvas);
             command.execute();
         });
         uiModule.addEvent(EventName.GROUP, () -> {
