@@ -1,35 +1,39 @@
 package model.shapes;
 
 import model.Point;
-import model.Shape;
 import model.ShapeConfiguration;
 import model.interfaces.IShape;
-import view.gui.PaintCanvas;
 
 import java.awt.*;
 
 public class Triangle extends Shape implements IShape {
     // Fields
-    public ShapeConfiguration shape;
+    private ShapeConfiguration shape;
+    private Point firstPoint;
+    private Point lastPoint;
+    private int x1;
+    private int x2;
+    private int y1;
+    private int y2;
+    private int[] xPoints;
+    private int[] yPoints;
+
 
     // Constructor
     public Triangle(ShapeConfiguration shape) {
         this.shape = shape;
+        this.firstPoint = shape.getFirstPoint();
+        this.lastPoint = shape.getLastPoint();
+        this.x1 = firstPoint.getX();
+        this.x2 = lastPoint.getX();
+        this.y1 = firstPoint.getY();
+        this.y2 = lastPoint.getY();
+        this.xPoints = new int[]{x1, x2, x1};
+        this.yPoints = new int[]{y1, y2, y2};
     }
 
     @Override
     public void draw(Graphics2D g) {
-
-        // Local Variables
-        Point firstPoint = shape.getFirstPoint();
-        Point lastPoint = shape.getLastPoint();
-        int x1 = firstPoint.getX();
-        int x2 = lastPoint.getX();
-        int y1 = firstPoint.getY();
-        int y2 = lastPoint.getY();
-        int[] xPoints = new int[]{x1, x2, x1};
-        int[] yPoints = new int[]{y1, y2, y2};
-
         // Determine Shading Mode and Draw
         switch (shape.shapeShadingType) {
             case FILLED_IN:
@@ -52,18 +56,7 @@ public class Triangle extends Shape implements IShape {
 
     }
 
-
     public void selectDraw(Graphics2D g) {
-        // Local Variables
-        Point firstPoint = shape.getFirstPoint();
-        Point lastPoint = shape.getLastPoint();
-        int x1 = firstPoint.getX();
-        int x2 = lastPoint.getX();
-        int y1 = firstPoint.getY();
-        int y2 = lastPoint.getY();
-        int[] xPoints = new int[]{x1, x2, x1};
-        int[] yPoints = new int[]{y1, y2, y2};
-
         Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
         g.setStroke(stroke);
         g.setColor(Color.BLACK);
