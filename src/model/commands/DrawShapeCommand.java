@@ -1,6 +1,7 @@
 package model.commands;
 
 import model.CommandHistory;
+import model.SelectedShapeList;
 import model.ShapeList;
 import model.interfaces.ICommand;
 import model.interfaces.IShape;
@@ -30,6 +31,7 @@ public class DrawShapeCommand implements IUndoable, ICommand {
     @Override
     public void undo() {
         ShapeList.remove();
+        SelectedShapeList.selectedShapeList.remove(shape);
         paintCanvas.repaint();
     }
 

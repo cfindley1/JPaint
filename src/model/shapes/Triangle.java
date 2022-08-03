@@ -52,6 +52,24 @@ public class Triangle extends Shape implements IShape {
 
     }
 
+
+    public void selectDraw(Graphics2D g) {
+        // Local Variables
+        Point firstPoint = shape.getFirstPoint();
+        Point lastPoint = shape.getLastPoint();
+        int x1 = firstPoint.getX();
+        int x2 = lastPoint.getX();
+        int y1 = firstPoint.getY();
+        int y2 = lastPoint.getY();
+        int[] xPoints = new int[]{x1, x2, x1};
+        int[] yPoints = new int[]{y1, y2, y2};
+
+        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+        g.setStroke(stroke);
+        g.setColor(Color.BLACK);
+        g.drawPolygon(xPoints, yPoints, 3);
+    }
+
     public ShapeConfiguration getShapeConfig() {
         return this.shape;
     }
