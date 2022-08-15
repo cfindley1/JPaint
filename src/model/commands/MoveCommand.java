@@ -1,9 +1,11 @@
 package model.commands;
 
-import model.*;
+import model.CommandHistory;
+import model.SelectedShapeList;
+import model.TransformContext;
+import model.TransformMove;
 import model.interfaces.ICommand;
 import model.interfaces.IShape;
-import model.interfaces.ITransformStrategy;
 import model.interfaces.IUndoable;
 import view.gui.PaintCanvas;
 
@@ -31,7 +33,6 @@ public class MoveCommand implements IUndoable, ICommand {
         }
         paintCanvas.repaint();
         CommandHistory.add(this);
-        System.out.println("done");
     }
 
     @Override

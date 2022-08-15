@@ -1,6 +1,5 @@
 package model.shapes;
 
-import model.Point;
 import model.ShapeConfiguration;
 import model.interfaces.IShape;
 
@@ -8,12 +7,18 @@ import java.awt.*;
 
 abstract public class Shape implements IShape {
 
+    // Fields
     public ShapeConfiguration shape;
 
+
+    // Methods
     public ShapeConfiguration getShapeConfig() {
         return this.shape;
     }
 
     public void selectDraw(Graphics2D g) {}
 
+    public int getSize() {
+        return 1;
+    }
 }

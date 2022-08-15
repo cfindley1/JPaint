@@ -6,7 +6,6 @@ import model.commands.MoveCommand;
 import model.commands.SelectCommand;
 import model.interfaces.IShape;
 import model.persistence.ApplicationState;
-import view.gui.PaintCanvas;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,7 +33,6 @@ public class MouseHandler extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         // Calculate point on mouse press for start point of shape
         firstPoint = new Point(e.getX(), e.getY());
-        System.out.println(e.getX() + ", " + e.getY());
     }
 
     @Override
@@ -42,7 +40,7 @@ public class MouseHandler extends MouseAdapter {
         mouseMode = appState.getActiveMouseMode();
         // Calculate point on release for endpoint of shape after user drags mouse
         lastPoint = new Point(e.getX(), e.getY());
-        
+
         if (mouseMode == MouseMode.DRAW) {
             ShapeConfiguration shapeConfiguration = new ShapeConfiguration(firstPoint, lastPoint, appState);
             ShapeFactory shapeFactory = new ShapeFactory();

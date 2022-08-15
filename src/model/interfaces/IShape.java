@@ -1,8 +1,5 @@
 package model.interfaces;
 
-import model.ShapeConfiguration;
-import view.gui.PaintCanvas;
-
 import java.awt.*;
 
 public interface IShape {
@@ -10,5 +7,7 @@ public interface IShape {
 
     void selectDraw(Graphics2D g);
 
-    ShapeConfiguration getShapeConfig();
+    int getSize();
+
+    IShapeConfiguration getShapeConfig();
 }

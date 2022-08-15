@@ -3,7 +3,6 @@ package view.gui;
 import model.SelectedShapeList;
 import model.ShapeList;
 import model.interfaces.IShape;
-
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
@@ -15,7 +14,10 @@ public class PaintCanvas extends PaintCanvasBase {
     private static PaintCanvas instance = new PaintCanvas();
 
     // Private constructor so that it cannot be instantiated
-    private PaintCanvas(){};
+    private PaintCanvas() {
+    }
+
+    ;
 
     public static PaintCanvas getInstance() {
         return instance;

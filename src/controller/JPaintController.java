@@ -3,7 +3,6 @@ package controller;
 import model.commands.*;
 import model.interfaces.IApplicationState;
 import view.EventName;
-import view.gui.PaintCanvas;
 import view.interfaces.IUiModule;
 
 public class JPaintController implements IJPaintController {
@@ -47,7 +46,8 @@ public class JPaintController implements IJPaintController {
             command.execute();
         });
         uiModule.addEvent(EventName.GROUP, () -> {
-
+            GroupShapeCommand command = new GroupShapeCommand();
+            command.execute();
         });
         uiModule.addEvent(EventName.UNGROUP, () -> {
 

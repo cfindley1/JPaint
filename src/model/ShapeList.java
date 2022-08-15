@@ -1,6 +1,7 @@
 package model;
 
 import model.interfaces.IShape;
+import model.interfaces.IShapeConfiguration;
 import model.shapes.Shape;
 
 import java.util.ArrayList;
@@ -17,32 +18,14 @@ public class ShapeList {
         shapeList.add(shape);
     }
 
-    public static void remove() {
-        int index = shapeList.size() - 1;
-        shapeList.remove(index);
+    public static void remove(IShape shape) {
+        shapeList.remove(shape);
     }
 
-    public static boolean collides(Point from, Point to, Shape shapeConfig) {
+    public static boolean collides(Point from, Point to, IShape shape) {
+        IShapeConfiguration shapeConfiguration = shape.getShapeConfig();
+        boolean collides = shapeConfiguration.collides(from, to);
+        return collides;
 
-        ShapeConfiguration shape = shapeConfig.getShapeConfig();
-        Point firstPoint = shape.getFirstPoint();
-        Point lastPoint = shape.getLastPoint();
-        int x1 = firstPoint.getX();
-        int x2 = lastPoint.getX();
-        int y1 = firstPoint.getY();
-        int y2 = lastPoint.getY();
-
-        int s_l_x = Math.min(x1, x2);
-        int s_t_y = Math.min(y1, y2);
-        int s_r_x = Math.max(x1, x2);
-        int s_b_y = Math.max(y1, y2);
-
-        int d_l_x = Math.min(from.getX(), to.getX());
-        int d_t_y = Math.min(from.getY(), to.getY());
-        int d_r_x = Math.max(from.getX(), to.getX());
-        int d_b_y = Math.max(from.getY(), to.getY());
-
-        return ((d_r_x > s_l_x) && (d_b_y > s_t_y)
-                && (s_r_x > d_l_x) && (s_b_y > d_t_y));
     }
 }

@@ -9,7 +9,6 @@ import view.gui.GuiWindow;
 import view.gui.PaintCanvas;
 import view.interfaces.IGuiWindow;
 import view.interfaces.IUiModule;
-import view.interfaces.PaintCanvasBase;
 
 public class Main {
     public static void main(String[] args) {
