@@ -2,6 +2,7 @@ package model;
 
 import model.interfaces.IShape;
 import model.interfaces.IShapeConfiguration;
+import model.Point;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class ShapeGroupConfiguration implements IShapeConfiguration {
     }
 
     public void add(IShape shape) {
-        groupedShapes.remove(shape);
+        groupedShapes.add(shape);
     }
 
     public void remove(IShape shape) {
@@ -32,10 +33,12 @@ public class ShapeGroupConfiguration implements IShapeConfiguration {
     @Override
     public boolean collides(Point from, Point to) {
         System.out.println("ShapeGroup");
+        System.out.println(groupedShapes.size());
         if (groupedShapes.size() == 0)
             return false;
         boolean collides = false;
         for (IShape child : groupedShapes) {
+            System.out.println(child);
             ShapeConfiguration shape = (ShapeConfiguration) child.getShapeConfig();
             Point firstPoint = shape.getFirstPoint();
             Point lastPoint = shape.getLastPoint();
@@ -59,6 +62,32 @@ public class ShapeGroupConfiguration implements IShapeConfiguration {
                 break;
             }
         }
+        System.out.println(collides);
         return collides;
+    }
+
+    public int[] getCoordinates() {
+        ShapeConfiguration shapeConfig;
+        int minX = Integer.MAX_VALUE;
+        int minY = Integer.MAX_VALUE;
+        int maxX = Integer.MIN_VALUE;
+        int maxY = Integer.MIN_VALUE;
+        for (IShape child : groupedShapes) {
+            shapeConfig = (ShapeConfiguration) child.getShapeConfig();
+            // Origin of select shape
+            if (shapeConfig.getX() < minX)
+                minX = shapeConfig.getX();
+            if (shapeConfig.getY() < minY)
+                minY = shapeConfig.getY();
+            // Width and height
+            if ((shapeConfig.getX() + shapeConfig.width) > maxX)
+               maxX = shapeConfig.getX() + shapeConfig.width;
+            if ((shapeConfig.getY() + shapeConfig.height) > maxY)
+                maxY = shapeConfig.getY() + shapeConfig.height;
+        }
+        int width = maxX - minX;
+        int height = maxY - minY;
+        int[] coordinateArray = new int[]{minX, minY, width, height};
+        return coordinateArray;
     }
 }

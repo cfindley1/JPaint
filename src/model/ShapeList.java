@@ -26,6 +26,5 @@ public class ShapeList {
         IShapeConfiguration shapeConfiguration = shape.getShapeConfig();
         boolean collides = shapeConfiguration.collides(from, to);
         return collides;
-
     }
 }

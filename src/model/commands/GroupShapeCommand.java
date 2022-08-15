@@ -2,40 +2,49 @@ package model.commands;
 
 import model.CommandHistory;
 import model.SelectedShapeList;
+import model.ShapeGroupConfiguration;
 import model.ShapeList;
 import model.interfaces.ICommand;
 import model.interfaces.IShape;
 import model.interfaces.IUndoable;
 import model.shapes.ShapeGroup;
 
+import java.util.ArrayList;
+
 
 public class GroupShapeCommand implements IUndoable, ICommand {
 
     // Fields
-    ShapeGroup shapeGroup = new ShapeGroup();
+    ShapeGroup shapeGroupReference;
 
     // Constructor
-    public GroupShapeCommand() {
-    }
+    public GroupShapeCommand() {}
 
     // Methods
     @Override
     public void execute() {
+        ShapeGroupConfiguration groupedShapes = new ShapeGroupConfiguration();
         for (IShape shape : SelectedShapeList.selectedShapeList) {
-            shapeGroup.add(shape);
-            System.out.println(shape);
+            groupedShapes.add(shape);
         }
+        ShapeGroup shapeGroup = new ShapeGroup(groupedShapes);
+        shapeGroupReference = shapeGroup;
+        for (IShape shape : groupedShapes.getList())
+            shape.setGroup(shapeGroup);
         ShapeList.add(shapeGroup);
         CommandHistory.add(this);
     }
 
     @Override
     public void undo() {
-        ShapeList.remove(shapeGroup);
+        for (IShape shape : shapeGroupReference.getShapeConfig().getList()) {
+            shape.setGroup();
+        }
+        ShapeList.remove(shapeGroupReference);
     }
 
     @Override
     public void redo() {
-        ShapeList.add(shapeGroup);
+        ShapeList.add(shapeGroupReference);
     }
 }

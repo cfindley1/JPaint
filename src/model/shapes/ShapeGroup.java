@@ -10,10 +10,11 @@ public class ShapeGroup implements IShape {
     // Fields
 
     private ShapeGroupConfiguration groupedShapes;
+    private ShapeGroup parentShapeGroup;
 
     // Constructor
-    public ShapeGroup() {
-        this.groupedShapes = new ShapeGroupConfiguration();
+    public ShapeGroup(ShapeGroupConfiguration groupedShapes) {
+        this.groupedShapes = groupedShapes;
     }
 
     // Composite Pattern Methods
@@ -29,7 +30,16 @@ public class ShapeGroup implements IShape {
     public void draw(Graphics2D g) {}
 
     @Override
-    public void selectDraw(Graphics2D g) {}
+    public void selectDraw(Graphics2D g) {
+        ShapeGroupConfiguration currentGroup = groupedShapes;
+        if (this.getGroup() != null)
+            currentGroup = this.getGroup().groupedShapes;
+        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+        g.setStroke(stroke);
+        g.setColor(Color.BLACK);
+        int[] c = currentGroup.getCoordinates();
+        g.drawRect(c[0], c[1], c[2], c[3]);
+    }
 
     @Override
     public ShapeGroupConfiguration getShapeConfig() {
@@ -42,5 +52,20 @@ public class ShapeGroup implements IShape {
             size++;
         }
         return size;
+    }
+
+    @Override
+    public ShapeGroup getGroup() {
+        if (parentShapeGroup == null)
+            return null;
+        // Travel up tree to reach parent
+        ShapeGroup cursor = parentShapeGroup;
+        while (cursor.parentShapeGroup != null)
+            cursor = parentShapeGroup.parentShapeGroup;
+        return cursor;
+    }
+
+    public void setGroup(ShapeGroup shapeGroup) {
+        this.parentShapeGroup = shapeGroup;
     }
 }

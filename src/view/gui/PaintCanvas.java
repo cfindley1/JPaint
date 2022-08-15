@@ -27,10 +27,15 @@ public class PaintCanvas extends PaintCanvasBase {
     @Override
     public void paint(Graphics g) {
         Graphics2D graphics2d = (Graphics2D) g;
-        for (IShape shape : ShapeList.shapeList)
+        for (IShape shape : ShapeList.shapeList) {
             shape.draw(graphics2d);
-        for (IShape shape : SelectedShapeList.selectedShapeList)
-            shape.selectDraw(graphics2d);
+        }
+        for (IShape shape : SelectedShapeList.selectedShapeList) {
+            if (shape.getGroup() == null)
+                shape.selectDraw(graphics2d);
+            else
+                shape.getGroup().selectDraw(graphics2d);
+        }
     }
 
     public Graphics2D getGraphics2D() {

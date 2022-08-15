@@ -3,6 +3,7 @@ package model;
 import model.interfaces.IShape;
 import model.interfaces.IShapeConfiguration;
 import model.persistence.ApplicationState;
+import model.shapes.ShapeGroup;
 
 import java.awt.*;
 
@@ -24,6 +25,7 @@ public class ShapeConfiguration implements IShapeConfiguration {
     public Color shapeColorPrimary;
     public Color shapeColorSecondary;
     public ShapeShadingType shapeShadingType;
+    public ShapeGroup shapeGroup;
 
 
     // CONSTRUCTOR //
@@ -37,6 +39,7 @@ public class ShapeConfiguration implements IShapeConfiguration {
         this.shapeColorPrimary = ColorConverter.getColor(appState.getActivePrimaryColor());
         this.shapeColorSecondary = ColorConverter.getColor(appState.getActiveSecondaryColor());
         this.shapeShadingType = appState.getActiveShapeShadingType();
+        this.shapeGroup = null;
     }
 
     public ShapeConfiguration(Point firstPoint, Point lastPoint) {

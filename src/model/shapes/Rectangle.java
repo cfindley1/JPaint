@@ -15,6 +15,7 @@ public class Rectangle extends Shape implements IShape {
 
     // Constructor
     public Rectangle(ShapeConfiguration shape) {
+        super();
         this.shape = shape;
         this.x = shape.getX();
         this.y = shape.getY();

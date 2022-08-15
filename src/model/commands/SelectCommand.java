@@ -2,11 +2,15 @@ package model.commands;
 
 import model.Point;
 import model.SelectedShapeList;
+import model.ShapeGroupConfiguration;
 import model.ShapeList;
 import model.interfaces.ICommand;
 import model.interfaces.IShape;
 import model.shapes.Shape;
+import model.shapes.ShapeGroup;
 import view.gui.PaintCanvas;
+
+import java.util.List;
 
 public class SelectCommand implements ICommand {
     private Point firstPoint;
@@ -23,9 +27,19 @@ public class SelectCommand implements ICommand {
     public void execute() {
         for (IShape shape : ShapeList.shapeList) {
             boolean collision = ShapeList.collides(firstPoint, lastPoint, shape);
-            if (collision)
-                SelectedShapeList.add(shape, paintCanvas);
-            else SelectedShapeList.remove(shape, paintCanvas);
+            if (collision) {
+                // Check whether its group shape or not
+                if (shape.getSize() > 1) {
+                    ShapeGroup shapeGroup = (ShapeGroup) shape;
+                    List<IShape> children = shapeGroup.getShapeConfig().getList();
+                    for (IShape s : children) {
+                        SelectedShapeList.add(s);
+                    }
+                    return;
+                }
+                SelectedShapeList.add(shape);
+            }
+            else SelectedShapeList.remove(shape);
         }
     }
 }

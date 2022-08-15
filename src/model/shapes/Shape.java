@@ -9,6 +9,12 @@ abstract public class Shape implements IShape {
 
     // Fields
     public ShapeConfiguration shape;
+    private ShapeGroup shapeGroup;
+
+    // Constructor
+    public Shape() {
+        shapeGroup = null;
+    }
 
 
     // Methods
@@ -20,5 +26,14 @@ abstract public class Shape implements IShape {
 
     public int getSize() {
         return 1;
+    }
+
+    @Override
+    public ShapeGroup getGroup() {
+        return shapeGroup;
+    }
+
+    public void setGroup(ShapeGroup shapeGroup) {
+        this.shapeGroup = shapeGroup;
     }
 }

@@ -14,6 +14,7 @@ public class Ellipse extends Shape implements IShape {
 
     // Constructor
     public Ellipse(ShapeConfiguration shape) {
+        super();
         this.shape = shape;
         this.x = shape.getX();
         this.y = shape.getY();

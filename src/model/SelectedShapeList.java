@@ -12,12 +12,14 @@ public class SelectedShapeList {
     public static List<IShape> selectedShapeList = new ArrayList<>();
 
     // METHODS //
-    public static void add(IShape shape, PaintCanvas paintCanvas) {
+    public static void add(IShape shape) {
+        PaintCanvas paintCanvas = PaintCanvas.getInstance();
         selectedShapeList.add(shape);
         paintCanvas.repaint();
     }
 
-    public static void remove(Object shape, PaintCanvas paintCanvas) {
+    public static void remove(Object shape) {
+        PaintCanvas paintCanvas = PaintCanvas.getInstance();
         selectedShapeList.remove(shape);
         paintCanvas.repaint();
     }

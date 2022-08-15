@@ -21,6 +21,7 @@ public class Triangle extends Shape implements IShape {
 
     // Constructor
     public Triangle(ShapeConfiguration shape) {
+        super();
         this.shape = shape;
         this.firstPoint = shape.getFirstPoint();
         this.lastPoint = shape.getLastPoint();
