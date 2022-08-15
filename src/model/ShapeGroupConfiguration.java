@@ -32,20 +32,19 @@ public class ShapeGroupConfiguration implements IShapeConfiguration {
 
     @Override
     public boolean collides(Point from, Point to) {
-        System.out.println("ShapeGroup");
-        System.out.println(groupedShapes.size());
         if (groupedShapes.size() == 0)
             return false;
+        int[] c = this.getCoordinates();
         boolean collides = false;
         for (IShape child : groupedShapes) {
             System.out.println(child);
             ShapeConfiguration shape = (ShapeConfiguration) child.getShapeConfig();
             Point firstPoint = shape.getFirstPoint();
             Point lastPoint = shape.getLastPoint();
-            int x1 = firstPoint.getX();
-            int x2 = lastPoint.getX();
-            int y1 = firstPoint.getY();
-            int y2 = lastPoint.getY();
+            int x1 = c[0];
+            int x2 = c[0] + c[2];
+            int y1 = c[1];
+            int y2 = c[1] + c[3];
 
             int s_l_x = Math.min(x1, x2);
             int s_t_y = Math.min(y1, y2);

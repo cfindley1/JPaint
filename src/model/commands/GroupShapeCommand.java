@@ -8,6 +8,7 @@ import model.interfaces.ICommand;
 import model.interfaces.IShape;
 import model.interfaces.IUndoable;
 import model.shapes.ShapeGroup;
+import view.gui.PaintCanvas;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public class GroupShapeCommand implements IUndoable, ICommand {
 
     // Fields
     ShapeGroup shapeGroupReference;
+    PaintCanvas paintCanvas = PaintCanvas.getInstance();
 
     // Constructor
     public GroupShapeCommand() {}
@@ -32,19 +34,19 @@ public class GroupShapeCommand implements IUndoable, ICommand {
         for (IShape shape : groupedShapes.getList())
             shape.setGroup(shapeGroup);
         ShapeList.add(shapeGroup);
+        paintCanvas.repaint();
         CommandHistory.add(this);
     }
 
     @Override
     public void undo() {
-        for (IShape shape : shapeGroupReference.getShapeConfig().getList()) {
-            shape.setGroup();
-        }
         ShapeList.remove(shapeGroupReference);
+        paintCanvas.repaint();
     }
 
     @Override
     public void redo() {
         ShapeList.add(shapeGroupReference);
+        paintCanvas.repaint();
     }
 }
