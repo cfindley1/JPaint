@@ -27,4 +27,8 @@ public class ShapeList {
         boolean collides = shapeConfiguration.collides(from, to);
         return collides;
     }
+
+    public static boolean contains(IShape shape) {
+        return shapeList.contains(shape);
+    }
 }

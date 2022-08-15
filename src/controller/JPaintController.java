@@ -50,7 +50,8 @@ public class JPaintController implements IJPaintController {
             command.execute();
         });
         uiModule.addEvent(EventName.UNGROUP, () -> {
-
+            UngroupShapeCommand command = new UngroupShapeCommand();
+            command.execute();
         });
     }
 }

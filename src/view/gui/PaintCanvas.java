@@ -36,6 +36,9 @@ public class PaintCanvas extends PaintCanvasBase {
             else
                 shape.getGroup().selectDraw(graphics2d);
         }
+        for (IShape s : ShapeList.shapeList)
+            System.out.println(s);
+        System.out.println("repainted");
     }
 
     public Graphics2D getGraphics2D() {
