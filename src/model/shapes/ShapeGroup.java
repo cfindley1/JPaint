@@ -47,11 +47,7 @@ public class ShapeGroup implements IShape {
     }
 
     public int getSize() {
-        int size = 0;
-        for (IShape shape : groupedShapes.getList()) {
-            size++;
-        }
-        return size;
+        return groupedShapes.getList().size();
     }
 
     @Override
