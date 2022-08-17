@@ -23,6 +23,12 @@ public class Triangle extends Shape implements IShape {
     public Triangle(ShapeConfiguration shape) {
         super();
         this.shape = shape;
+    }
+
+    @Override
+    public void draw(Graphics2D g) {
+
+        // Update shape
         this.firstPoint = shape.getFirstPoint();
         this.lastPoint = shape.getLastPoint();
         this.x1 = firstPoint.getX();
@@ -31,10 +37,7 @@ public class Triangle extends Shape implements IShape {
         this.y2 = lastPoint.getY();
         this.xPoints = new int[]{x1, x2, x1};
         this.yPoints = new int[]{y1, y2, y2};
-    }
 
-    @Override
-    public void draw(Graphics2D g) {
         // Determine Shading Mode and Draw
         switch (shape.shapeShadingType) {
             case FILLED_IN:

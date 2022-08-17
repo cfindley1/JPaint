@@ -35,11 +35,12 @@ public class SelectCommand implements ICommand {
                     for (IShape s : children) {
                         SelectedShapeList.add(s);
                     }
-                    return;
                 }
                 SelectedShapeList.add(shape);
             }
             else SelectedShapeList.remove(shape);
         }
+        PaintCanvas.getInstance().repaint();
+        SelectedShapeList.print();
     }
 }

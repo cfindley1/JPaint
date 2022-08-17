@@ -18,7 +18,7 @@ public class GroupShapeCommand implements IUndoable, ICommand {
 
     // Fields
     ShapeGroup shapeGroupReference;
-    List<ShapeGroup> groupList = new ArrayList<ShapeGroup>();
+    List<IShape> groupedShapeList = new ArrayList<>();
 
     PaintCanvas paintCanvas = PaintCanvas.getInstance();
 
@@ -28,41 +28,43 @@ public class GroupShapeCommand implements IUndoable, ICommand {
     // Methods
     @Override
     public void execute() {
-        ShapeGroupConfiguration groupedShapes = new ShapeGroupConfiguration();
-        for (IShape shape : SelectedShapeList.selectedShapeList) {
-            System.out.println(shape);
-            groupedShapes.add(shape);
-            groupList.add(shape.getGroup());
+        ShapeGroup newShapeGroup = new ShapeGroup();
+        for (IShape shape : SelectedShapeList.getList()) {
+            // Set the new group for each IShape
+            shape.setGroup(newShapeGroup);
+            // Add shapes to group and record which shapes added
+            newShapeGroup.add(shape);
+            groupedShapeList.add(shape);
         }
-        ShapeGroup shapeGroup = new ShapeGroup(groupedShapes);
-        shapeGroupReference = shapeGroup;
-        for (IShape shape : groupedShapes.getList()) {
-            System.out.println(shape);
-            shape.setGroup(shapeGroup);
-        }
-        ShapeList.add(shapeGroup);
+        shapeGroupReference = newShapeGroup;
+        ShapeList.add(newShapeGroup);
+        SelectedShapeList.add(newShapeGroup);
         paintCanvas.repaint();
         CommandHistory.add(this);
-        System.out.println("execute done");
+        System.out.println(shapeGroupReference.getGroup() + " in execute");
     }
 
     @Override
     public void undo() {
-        for (ShapeGroup group : groupList) {
-            for (IShape shape : shapeGroupReference.getShapeConfig().getList()) {
-                shape.setGroup(group);
-            }
+        for (IShape shape : groupedShapeList) {
+            shape.removeGroup(shapeGroupReference);
         }
         ShapeList.remove(shapeGroupReference);
+        SelectedShapeList.remove(shapeGroupReference);
         paintCanvas.repaint();
     }
 
     @Override
     public void redo() {
-        for (IShape shape : shapeGroupReference.getShapeConfig().getList()) {
+        System.out.println(shapeGroupReference.getGroup() + " in redo");
+        for (IShape shape : groupedShapeList) {
             shape.setGroup(shapeGroupReference);
         }
+        for (IShape shape : groupedShapeList)
+            System.out.println(shape.getGroup() + "redo shape:  " + shape);
         ShapeList.add(shapeGroupReference);
+
+        SelectedShapeList.add(shapeGroupReference);
         paintCanvas.repaint();
     }
 }

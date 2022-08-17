@@ -27,17 +27,20 @@ public class PaintCanvas extends PaintCanvasBase {
     @Override
     public void paint(Graphics g) {
         Graphics2D graphics2d = (Graphics2D) g;
+        // Draw shapes
         for (IShape shape : ShapeList.shapeList) {
             shape.draw(graphics2d);
+            System.out.println("shape List: " + shape);
         }
-        for (IShape shape : SelectedShapeList.selectedShapeList) {
-            if (shape.getGroup() == null)
-                shape.selectDraw(graphics2d);
+        // Draw outlines
+        for (IShape shape : SelectedShapeList.getList()) {
+            System.out.println(shape + "group: " + shape.getGroup());
+            // If it has a group, then you don't need to outline it
+            if (shape.getGroup() != null)
+                continue;
             else
-                shape.getGroup().selectDraw(graphics2d);
+                shape.selectDraw(graphics2d);
         }
-        for (IShape s : ShapeList.shapeList)
-            System.out.println(s);
         System.out.println("repainted");
     }
 

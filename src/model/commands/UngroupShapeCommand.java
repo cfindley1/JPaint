@@ -15,17 +15,18 @@ import java.util.List;
 public class UngroupShapeCommand implements IUndoable, ICommand {
 
     // Fields
-    List<IShape> ungroupedShapes = new ArrayList<>();
-    List<ShapeGroup> groupList = new ArrayList<>();
+    List<IShape> ungroupedList = new ArrayList<>();
 
     @Override
     public void execute() {
-        for (IShape shape : SelectedShapeList.selectedShapeList) {
-            if (shape.getGroup() != null) {
-                groupList.add(shape.getGroup());
-                ungroupedShapes.add(shape);
-                ShapeList.remove(shape.getGroup());
-                shape.setGroup(null);
+        for (IShape shape : SelectedShapeList.getList()) {
+            ShapeGroup shapeGroup = shape.getGroup();
+            // If shape is in a group, save a reference
+            if (shapeGroup != null) {
+                ungroupedList.add(shapeGroup);
+                ShapeList.remove(shapeGroup);
+                SelectedShapeList.remove(shapeGroup);
+                shape.removeGroup(shapeGroup);
             }
         }
         PaintCanvas.getInstance().repaint();
@@ -33,23 +34,25 @@ public class UngroupShapeCommand implements IUndoable, ICommand {
     }
 
     @Override
-    public void undo() {
-        for (ShapeGroup group : groupList) {
-            for (IShape shape : ungroupedShapes) {
-                shape.setGroup(group);
-                if (!ShapeList.contains(shape))
-                    ShapeList.add(group);
+    public void undo() { /*
+        for (int i = 0; i < ungroupedList.size(); i++) {
+            IShape shape = ungroupedList.get(i);
+            shape.setGroup();
+            if (!ShapeList.contains(shape)) {
+                ShapeList.add(group);
+                SelectedShapeList.add(group);
             }
-        }
+            }
         PaintCanvas.getInstance().repaint();
-    }
+  */  }
 
     @Override
-    public void redo() {
+    public void redo() { /*
         for (IShape shape : ungroupedShapes) {
             ShapeList.remove(shape.getGroup());
+            SelectedShapeList.remove(shape.getGroup());
             shape.setGroup(null);
         }
         PaintCanvas.getInstance().repaint();
-    }
+    */}
 }

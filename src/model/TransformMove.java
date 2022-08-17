@@ -11,6 +11,4 @@ public class TransformMove implements ITransformStrategy {
         p2.transformXAndY(deltaX, deltaY);
         return null;
     }
-
-    ;
 }

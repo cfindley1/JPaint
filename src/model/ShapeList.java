@@ -15,7 +15,7 @@ public class ShapeList {
 
     // METHODS //
     public static void add(IShape shape) {
-        shapeList.add(shape);
+        if (!shapeList.contains(shape)) shapeList.add(shape);
     }
 
     public static void remove(IShape shape) {

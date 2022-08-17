@@ -54,26 +54,51 @@ public class ShapeGroupConfiguration implements IShapeConfiguration {
                 && (s_r_x > d_l_x) && (s_b_y > d_t_y));
     }
 
+    @Override
+    public int getX() {
+        int[] coordinates = getCoordinates();
+        return coordinates[0];
+    }
+
+    @Override
+    public int getY() {
+        int[] coordinates = getCoordinates();
+        return coordinates[1];
+    }
+
+    @Override
+    public int getWidth() {
+        int[] coordinates = getCoordinates();
+        return coordinates[2];
+    }
+
+    @Override
+    public int getHeight() {
+        int[] coordinates = getCoordinates();
+        return coordinates[3];
+    }
 
 
     public int[] getCoordinates() {
-        ShapeConfiguration shapeConfig;
+        IShapeConfiguration shapeConfig;
         int minX = Integer.MAX_VALUE;
         int minY = Integer.MAX_VALUE;
         int maxX = Integer.MIN_VALUE;
         int maxY = Integer.MIN_VALUE;
         for (IShape child : groupedShapes) {
-            shapeConfig = (ShapeConfiguration) child.getShapeConfig();
+            shapeConfig = child.getShapeConfig();
             // Origin of select shape
             if (shapeConfig.getX() < minX)
                 minX = shapeConfig.getX();
             if (shapeConfig.getY() < minY)
                 minY = shapeConfig.getY();
             // Width and height
-            if ((shapeConfig.getX() + shapeConfig.width) > maxX)
-               maxX = shapeConfig.getX() + shapeConfig.width;
-            if ((shapeConfig.getY() + shapeConfig.height) > maxY)
-                maxY = shapeConfig.getY() + shapeConfig.height;
+            int width = shapeConfig.getWidth();
+            int height = shapeConfig.getHeight();
+            if ((shapeConfig.getX() + width) > maxX)
+               maxX = shapeConfig.getX() + width;
+            if ((shapeConfig.getY() + height) > maxY)
+                maxY = shapeConfig.getY() + height;
         }
         int width = maxX - minX;
         int height = maxY - minY;

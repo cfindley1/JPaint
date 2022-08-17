@@ -66,6 +66,16 @@ public class ShapeConfiguration implements IShapeConfiguration {
         return Math.min(lastPoint.getY(), firstPoint.getY());
     }
 
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
+    }
+
     public IShape shapeCopy(Point firstPoint, Point lastPoint) {
         ShapeConfiguration copy = new ShapeConfiguration(firstPoint, lastPoint);
         copy.shapeType = this.shapeType;

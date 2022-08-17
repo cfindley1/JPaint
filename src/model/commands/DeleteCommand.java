@@ -22,12 +22,12 @@ public class DeleteCommand implements ICommand, IUndoable {
 
     @Override
     public void execute() {
-        for (IShape shape : SelectedShapeList.selectedShapeList) {
+        for (IShape shape : SelectedShapeList.getList()) {
             deletedShapes.add(shape);
-            ShapeList.shapeList.remove(shape);
+            ShapeList.remove(shape);
         }
         for (IShape shape : deletedShapes)
-            SelectedShapeList.selectedShapeList.remove(shape);
+            SelectedShapeList.remove(shape);
 
         paintCanvas.repaint();
         CommandHistory.add(this);

@@ -15,5 +15,7 @@ public interface IShape {
 
     void setGroup(ShapeGroup shapeGroup);
 
+    void removeGroup(ShapeGroup shapeGroup);
+
     IShapeConfiguration getShapeConfig();
 }

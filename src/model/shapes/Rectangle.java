@@ -17,14 +17,15 @@ public class Rectangle extends Shape implements IShape {
     public Rectangle(ShapeConfiguration shape) {
         super();
         this.shape = shape;
-        this.x = shape.getX();
-        this.y = shape.getY();
-        this.width = shape.width;
-        this.height = shape.height;
     }
 
     @Override
     public void draw(Graphics2D g) {
+        // Update shape dimensions
+        this.x = shape.getX();
+        this.y = shape.getY();
+        this.width = shape.width;
+        this.height = shape.height;
         // Determine Shading Mode and Draw
         switch (shape.shapeShadingType) {
             case FILLED_IN:

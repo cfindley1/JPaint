@@ -20,7 +20,6 @@ public class CommandHistory {
             redoStack.push(c);
             c.undo();
         }
-        System.out.println("clicked");
         return result;
     }
 

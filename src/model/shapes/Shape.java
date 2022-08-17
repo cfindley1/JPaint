@@ -1,5 +1,6 @@
 package model.shapes;
 
+import model.GroupList;
 import model.ShapeConfiguration;
 import model.interfaces.IShape;
 
@@ -9,14 +10,9 @@ abstract public class Shape implements IShape {
 
     // Fields
     public ShapeConfiguration shape;
-    private ShapeGroup shapeGroup;
 
-    // Constructor
-    public Shape() {
-        shapeGroup = null;
-    }
-
-
+    private GroupList groupList = new GroupList();
+    
     // Methods
     public ShapeConfiguration getShapeConfig() {
         return this.shape;
@@ -30,10 +26,19 @@ abstract public class Shape implements IShape {
 
     @Override
     public ShapeGroup getGroup() {
-        return shapeGroup;
+        if (groupList.getSize() == 0)
+            return null;
+        return groupList.getHead();
     }
 
     public void setGroup(ShapeGroup shapeGroup) {
-        this.shapeGroup = shapeGroup;
+        this.groupList.add(shapeGroup);
+    }
+
+
+    public void removeGroup(ShapeGroup shapeGroup) {
+        System.out.println(shapeGroup + " remove in shape");
+        groupList.remove(shapeGroup);
+
     }
 }

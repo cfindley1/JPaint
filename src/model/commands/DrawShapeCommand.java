@@ -31,7 +31,7 @@ public class DrawShapeCommand implements IUndoable, ICommand {
     @Override
     public void undo() {
         ShapeList.remove(shape);
-        SelectedShapeList.selectedShapeList.remove(shape);
+        SelectedShapeList.remove(shape);
         paintCanvas.repaint();
     }
 
