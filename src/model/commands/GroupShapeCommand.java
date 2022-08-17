@@ -29,6 +29,9 @@ public class GroupShapeCommand implements IUndoable, ICommand {
     @Override
     public void execute() {
         ShapeGroup newShapeGroup = new ShapeGroup();
+        // There's no point in grouping 1 shape -- thus return
+        if (SelectedShapeList.getList().size() <= 1) return;
+
         for (IShape shape : SelectedShapeList.getList()) {
             // Set the new group for each IShape
             shape.setGroup(newShapeGroup);
@@ -60,10 +63,7 @@ public class GroupShapeCommand implements IUndoable, ICommand {
         for (IShape shape : groupedShapeList) {
             shape.setGroup(shapeGroupReference);
         }
-        for (IShape shape : groupedShapeList)
-            System.out.println(shape.getGroup() + "redo shape:  " + shape);
         ShapeList.add(shapeGroupReference);
-
         SelectedShapeList.add(shapeGroupReference);
         paintCanvas.repaint();
     }

@@ -16,43 +16,49 @@ public class UngroupShapeCommand implements IUndoable, ICommand {
 
     // Fields
     List<IShape> ungroupedList = new ArrayList<>();
+    ShapeGroup shapeGroupReference;
 
     @Override
     public void execute() {
+        // Find highest level group to delete
+        for (IShape shape : SelectedShapeList.getList()) {
+            ShapeGroup shapeGroup = shape.getGroup();
+            if (shapeGroup != null) {
+                shapeGroupReference = shapeGroup;
+                break;
+            }
+        }
         for (IShape shape : SelectedShapeList.getList()) {
             ShapeGroup shapeGroup = shape.getGroup();
             // If shape is in a group, save a reference
             if (shapeGroup != null) {
-                ungroupedList.add(shapeGroup);
-                ShapeList.remove(shapeGroup);
-                SelectedShapeList.remove(shapeGroup);
-                shape.removeGroup(shapeGroup);
+                shape.removeGroup(shapeGroupReference);
+                ungroupedList.add(shape);
             }
         }
+        ShapeList.remove(shapeGroupReference);
+        SelectedShapeList.remove(shapeGroupReference);
         PaintCanvas.getInstance().repaint();
         CommandHistory.add(this);
     }
 
     @Override
-    public void undo() { /*
-        for (int i = 0; i < ungroupedList.size(); i++) {
-            IShape shape = ungroupedList.get(i);
-            shape.setGroup();
-            if (!ShapeList.contains(shape)) {
-                ShapeList.add(group);
-                SelectedShapeList.add(group);
-            }
-            }
+    public void undo() {
+        for (IShape shape : ungroupedList) {
+            shape.setGroup(shapeGroupReference);
+        }
+        ShapeList.add(shapeGroupReference);
+        SelectedShapeList.add(shapeGroupReference);
         PaintCanvas.getInstance().repaint();
-  */  }
+    }
 
     @Override
-    public void redo() { /*
-        for (IShape shape : ungroupedShapes) {
-            ShapeList.remove(shape.getGroup());
-            SelectedShapeList.remove(shape.getGroup());
-            shape.setGroup(null);
+    public void redo() {
+        for (IShape shape : ungroupedList) {
+            shape.removeGroup(shapeGroupReference);
         }
+        ShapeList.remove(shapeGroupReference);
+        SelectedShapeList.remove(shapeGroupReference);
         PaintCanvas.getInstance().repaint();
-    */}
+    }
 }

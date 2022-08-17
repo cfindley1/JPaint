@@ -30,11 +30,10 @@ public class PaintCanvas extends PaintCanvasBase {
         // Draw shapes
         for (IShape shape : ShapeList.shapeList) {
             shape.draw(graphics2d);
-            System.out.println("shape List: " + shape);
+            System.out.println("shape List: " + shape + " shapegroup: " + shape.getGroup());
         }
         // Draw outlines
         for (IShape shape : SelectedShapeList.getList()) {
-            System.out.println(shape + "group: " + shape.getGroup());
             // If it has a group, then you don't need to outline it
             if (shape.getGroup() != null)
                 continue;

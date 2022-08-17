@@ -27,7 +27,7 @@ public class MoveCommand implements IUndoable, ICommand {
 
     @Override
     public void execute() {
-        for (IShape shape : SelectedShapeList.selectedShapeList) {
+        for (IShape shape : SelectedShapeList.getList()) {
             movedShapes.add(shape);
             move.execute(shape, deltaX, deltaY);
         }

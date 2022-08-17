@@ -12,4 +12,8 @@ public interface IShapeConfiguration {
     int getWidth();
 
     int getHeight();
+
+    Point getFirstPoint();
+
+    Point getLastPoint();
 }

@@ -1,6 +1,7 @@
 package model;
 
 import model.interfaces.IShape;
+import model.interfaces.IShapeConfiguration;
 import model.interfaces.ITransformStrategy;
 
 public class TransformContext {
@@ -11,7 +12,7 @@ public class TransformContext {
     }
 
     public IShape execute(IShape shape, int deltaX, int deltaY) {
-        ShapeConfiguration shapeConfig = (ShapeConfiguration) shape.getShapeConfig();
+        IShapeConfiguration shapeConfig =  shape.getShapeConfig();
         Point p1 = shapeConfig.getFirstPoint();
         Point p2 = shapeConfig.getLastPoint();
         return strategy.transform(shapeConfig, p1, p2, deltaX, deltaY);

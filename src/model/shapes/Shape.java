@@ -12,7 +12,7 @@ abstract public class Shape implements IShape {
     public ShapeConfiguration shape;
 
     private GroupList groupList = new GroupList();
-    
+
     // Methods
     public ShapeConfiguration getShapeConfig() {
         return this.shape;

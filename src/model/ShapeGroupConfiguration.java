@@ -78,6 +78,16 @@ public class ShapeGroupConfiguration implements IShapeConfiguration {
         return coordinates[3];
     }
 
+    public Point getFirstPoint() {
+        int[] coordinates = getCoordinates();
+        return new Point(coordinates[0], coordinates[1]);
+    }
+
+    public Point getLastPoint() {
+        int[] coordinates = getCoordinates();
+        return new Point(coordinates[0] + coordinates[2], coordinates[1] + coordinates[3]);
+    }
+
 
     public int[] getCoordinates() {
         IShapeConfiguration shapeConfig;
