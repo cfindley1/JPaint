@@ -1,15 +1,22 @@
-# JPaint
+# <ins>JPaint
+## An 'MS Paint'-like application in Java
 
-## “MS Paint”-like application in Java
-
-
-## Link to Repository:
-[JPaint Repository](hhttps://github.com/cfindley1/JPaint)
+<br>
 
 
-## Design Patterns:
+## <ins>Bugs to note:
+- When creating complex groups within groups, commands will sporadically fail to work properly.
+ <br> The bugs are difficult to recreate and thus difficult to address. I've noticed that they tend to happen
+ <br> when hitting undo and redo group/ungroup many times and subsequently trying to move a group within a group.
 
-### 1. Command Pattern
+
+## <ins>Link to Repository:
+- [JPaint Repository](https://github.com/cfindley1/JPaint)
+
+
+## <ins>Design Patterns:
+
+## 1. Command Pattern
 
 **Interfaces:**
 - ICommand in src/model/interfaces
@@ -19,7 +26,7 @@
 
 
 
-### 2. Abstract Factory Pattern
+## 2. Abstract Factory Pattern
 
 **Abstract Class:**
 - AbstractFactory in src/model
@@ -29,7 +36,7 @@
 
 
 
-### 3. Strategy Pattern
+## 3. Strategy Pattern
 
 **Interfaces:**
 - ITransformStrategy in src/model/interfaces
@@ -42,7 +49,7 @@
 
 
 
-### 4. Singleton Pattern
+## 4. Singleton Pattern
 
 Class with Singleton Instance:
 - PaintCanvas in src/view/gui
@@ -53,7 +60,7 @@ Classes that use Singleton:
 
 
 
-### 5. Composite Pattern
+## 5. Composite Pattern
 
 **Interfaces:**
 - IShape in src/model/interfaces
