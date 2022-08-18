@@ -30,7 +30,6 @@ public class PaintCanvas extends PaintCanvasBase {
         // Draw shapes
         for (IShape shape : ShapeList.shapeList) {
             shape.draw(graphics2d);
-            System.out.println("shape List: " + shape + " shapegroup: " + shape.getGroup());
         }
         // Draw outlines
         for (IShape shape : SelectedShapeList.getList()) {
@@ -40,7 +39,6 @@ public class PaintCanvas extends PaintCanvasBase {
             else
                 shape.selectDraw(graphics2d);
         }
-        System.out.println("repainted");
     }
 
     public Graphics2D getGraphics2D() {

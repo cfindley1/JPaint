@@ -44,7 +44,6 @@ public class GroupShapeCommand implements IUndoable, ICommand {
         SelectedShapeList.add(newShapeGroup);
         paintCanvas.repaint();
         CommandHistory.add(this);
-        System.out.println(shapeGroupReference.getGroup() + " in execute");
     }
 
     @Override
@@ -59,7 +58,6 @@ public class GroupShapeCommand implements IUndoable, ICommand {
 
     @Override
     public void redo() {
-        System.out.println(shapeGroupReference.getGroup() + " in redo");
         for (IShape shape : groupedShapeList) {
             shape.setGroup(shapeGroupReference);
         }

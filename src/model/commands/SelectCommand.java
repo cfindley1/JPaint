@@ -41,6 +41,5 @@ public class SelectCommand implements ICommand {
             else SelectedShapeList.remove(shape);
         }
         PaintCanvas.getInstance().repaint();
-        SelectedShapeList.print();
     }
 }

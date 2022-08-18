@@ -25,7 +25,6 @@ public class PasteCommand implements ICommand, IUndoable {
         }
         paintCanvas.repaint();
         CommandHistory.add(this);
-        CopyShapeList.print();
     }
 
     public void undo() {

@@ -37,7 +37,6 @@ abstract public class Shape implements IShape {
 
 
     public void removeGroup(ShapeGroup shapeGroup) {
-        System.out.println(shapeGroup + " remove in shape");
         groupList.remove(shapeGroup);
 
     }
